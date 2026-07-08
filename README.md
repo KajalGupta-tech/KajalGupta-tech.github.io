@@ -1,61 +1,58 @@
-# [Your Name] - Data Analysis Portfolio
+# Kajal Gupta - Data Analysis & Machine Learning Portfolio
 
-Welcome! This repository contains the complete template for a professional, one-page data analysis portfolio website, hosted for free on GitHub Pages.
+Welcome! This repository contains the source code and project files for my professional data analysis portfolio website. 
 
-## About This Portfolio Template
+🌐 **View my live portfolio here:** [KajalGupta-tech.github.io](https://KajalGupta-tech.github.io/)
 
-This portfolio is designed to demonstrate skills in:
-- Data visualization and storytelling
-- Data modeling and analysis
-- Creating interactive, professional dashboards
-- Transforming complex data into actionable insights
+## 🚀 About My Work
 
-## 🚀 Projects
+As a Data Analyst with a B.Sc. in Computer Science (Honours), my work focuses on bridging the gap between raw data and strategic business decisions. This portfolio demonstrates my ability to:
+- Build machine learning models for predictive analytics and anomaly detection.
+- Design interactive, automated Business Intelligence (BI) dashboards.
+- Extract, clean, and model complex datasets using Python and SQL.
+- Transform complex data into clear, actionable storytelling.
 
-This template is set up to showcase your best work. You can easily customize the project cards in the `index.html` file.
+## 📊 Featured Projects
 
-### Project Title One
-*A brief description of your project, the tools used, and the key insights derived.*
+### 1. Predictive Analytics - Fraud Detection
+* **Tools:** Python (Scikit-Learn, Pandas), SQL, Machine Learning
+* **Overview:** Engineered features and built machine learning classification models (Logistic Regression, Random Forest) to identify fraudulent patterns across large transactional datasets. Evaluated model performance using confusion matrices and achieved high accuracy and F1-scores.
 
-### Project Title Two
-*A brief description of your project, the tools used, and the key insights derived.*
+### 2. Swiggy Operations & Customer Analytics Dashboard
+* **Tools:** Power BI, DAX, Power Query
+* **Overview:** Designed an end-to-end interactive dashboard analyzing delivery times, order frequency, and peak demand. Implemented time-series forecasting to predict demand surges, improving user-driven analysis efficiency by 25%.
 
-### Project Title Three
-*A brief description of your project, the tools used, and the key insights derived.*
+### 3. Amazon Product Web Scraper & Market Analyzer
+* **Tools:** Python, BeautifulSoup, Data Extraction
+* **Overview:** Developed a custom web scraping tool to extract real-time product prices, ratings, and customer reviews from Amazon, enabling deep market trend analysis and competitive pricing strategies.
 
+## 🛠️ Technical Skills
 
-## 🛠️ Skills
+#### Data Analysis & Visualization
+<p>
+  <img src="https://img.shields.io/badge/Power%20BI-Expert-FEE0E9?style=flat&logo=powerbi&logoColor=black" alt="Power BI Skill Badge">
+  <img src="https://img.shields.io/badge/Tableau-Intermediate-C7DD9D?style=flat&logo=tableau&logoColor=black" alt="Tableau Skill Badge">
+  <img src="https://img.shields.io/badge/Excel-Expert-FEE0E9?style=flat&logo=microsoft-excel&logoColor=black" alt="Excel Skill Badge">
+</p>
 
-Update the `index.html` file to reflect your personal technical skillset. The template is organized into key categories:
+#### Programming & Databases
+<p>
+  <img src="https://img.shields.io/badge/Python-Experienced-C7DD9D?style=flat&logo=python&logoColor=black" alt="Python Skill Badge">
+  <img src="https://img.shields.io/badge/SQL-Advanced-FEE0E9?style=flat&logo=mysql&logoColor=black" alt="SQL Skill Badge">
+  <img src="https://img.shields.io/badge/FastAPI-Intermediate-C7DD9D?style=flat&logo=fastapi&logoColor=black" alt="FastAPI Badge">
+</p>
 
-- **Data Visualization**: Power BI, Tableau, Matplotlib, etc.
-- **Data Analysis**: SQL, Python (Pandas), R, Excel, etc.
-- **Data Modeling**: Power Query, DAX, Star Schema Design, etc.
-- **Tools**: List any other relevant tools like Power BI Service, specific cloud platforms, etc.
+#### Machine Learning & Analytics
+<p>
+  <img src="https://img.shields.io/badge/Predictive%20Modeling-Experienced-FEE0E9?style=flat&logoColor=black" alt="Predictive Modeling Skill Badge">
+  <img src="https://img.shields.io/badge/Web%20Scraping-Experienced-C7DD9D?style=flat&logoColor=black" alt="Web Scraping Skill Badge">
+  <img src="https://img.shields.io/badge/Statistical%20Analysis-Experienced-FEE0E9?style=flat&logoColor=black" alt="Statistical Analysis Skill Badge">
+</p>
 
-## 💡 How to Use This Template
+## 📬 Let's Connect
 
-Creating your own portfolio from this template is a simple, four-step process.
+I am currently seeking entry-level roles in Data Analytics and Machine Learning. Feel free to reach out:
 
-### 1. Create a New Repository from this Template
-Click the green **"Use this template"** button at the top of this repository page, then select **"Create a new repository"**.
-
-### 2. Name Your Repository for GitHub Pages
-This is the most important step. To turn your portfolio into a live website, you **must** name your new repository in the following format:
-`your-username.github.io`
-*(Replace `your-username` with your actual GitHub username.)*
-
-### 3. Customize Your Portfolio
-Open the `index.html` file and begin personalizing it. The file contains helpful `<!--💡UPDATE: ... -->` comments to guide you on where to change:
-- Your name and title
-- Social media links
-- The "About Me" section
-- Your project titles, descriptions, and links
-- Your list of skills
-
-### 4. Add Your Files
-- Upload your profile photo and project preview images to the `assets/images/` folder.
-- Upload your CV (e.g., in PDF format) to the `assets/` folder.
-- Create your favicon and add it to the root folder.
-
-Once you commit your changes, your new portfolio website will be live at `https://your-username.github.io` within a few minutes!
+- **LinkedIn:** [linkedin.com/in/kajalgupta19](https://linkedin.com/in/kajalgupta19)
+- **Email:** projects.kajalgupta@gmail.com
+- **GitHub:** [github.com/KajalGupta-tech](https://github.com/KajalGupta-tech)
