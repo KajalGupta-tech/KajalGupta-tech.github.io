@@ -19,6 +19,85 @@
     
     <!-- Your Stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- CUSTOM COLOR INJECTION -->
+    <style>
+        :root {
+            --soft-pink: #FEE0E9;
+            --soft-green: #C7DD9D;
+            --text-dark: #2c3e50;
+        }
+
+        /* Header & Footer */
+        header, footer {
+            background-color: var(--soft-pink) !important;
+            color: var(--text-dark) !important;
+        }
+        
+        header p {
+            color: #555 !important;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--soft-green) !important;
+        }
+        nav ul li a {
+            color: var(--text-dark) !important;
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            color: #000 !important;
+            text-decoration: underline;
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: var(--soft-green) !important;
+            color: var(--text-dark) !important;
+            border: 1px solid #b3c88c !important;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background-color: #b3c88c !important;
+        }
+
+        .btn-secondary {
+            background-color: var(--soft-pink) !important;
+            color: var(--text-dark) !important;
+            border: 1px solid #e5cacc !important;
+        }
+        .btn-secondary:hover {
+            background-color: #e5cacc !important;
+        }
+
+        /* Social Links */
+        .social-links a {
+            color: var(--text-dark) !important;
+        }
+        .social-links a:hover {
+            color: #000 !important;
+            transform: scale(1.1);
+        }
+
+        /* Accents on Cards and Skills */
+        .project-card, .skill-column {
+            border-top: 5px solid var(--soft-green) !important;
+        }
+        
+        .skill-header i {
+            color: var(--soft-green) !important;
+            background-color: var(--text-dark);
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        h2 {
+            border-bottom: 3px solid var(--soft-pink);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
 
