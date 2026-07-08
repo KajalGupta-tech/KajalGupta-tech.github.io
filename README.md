@@ -2,7 +2,7 @@
 
 Welcome! This repository contains the source code and project files for my professional data analysis portfolio website. 
 
- **View my live portfolio here:** [KajalGupta-tech.github.io](https://KajalGupta-tech.github.io/)
+**View my live portfolio here:** [KajalGupta-tech.github.io](https://KajalGupta-tech.github.io/)
 
 ## About My Work
 
@@ -12,7 +12,7 @@ As a Data Analyst with a B.Sc. in Computer Science (Honours), my work focuses on
 - Extract, clean, and model complex datasets using Python and SQL.
 - Transform complex data into clear, actionable storytelling.
 
-##  Featured Projects
+## Featured Projects
 
 ### 1. Predictive Analytics - Fraud Detection
 * **Tools:** Python (Scikit-Learn, Pandas), SQL, Machine Learning
@@ -26,30 +26,30 @@ As a Data Analyst with a B.Sc. in Computer Science (Honours), my work focuses on
 * **Tools:** Python, BeautifulSoup, Data Extraction
 * **Overview:** Developed a custom web scraping tool to extract real-time product prices, ratings, and customer reviews from Amazon, enabling deep market trend analysis and competitive pricing strategies.
 
-##  Technical Skills
+## Technical Skills
 
 #### Data Analysis & Visualization
 <p>
-  <img src="https://img.shields.io/badge/Power%20BI-Expert-FEE0E9?style=flat&logo=powerbi&logoColor=black" alt="Power BI Skill Badge">
-  <img src="https://img.shields.io/badge/Tableau-Intermediate-C7DD9D?style=flat&logo=tableau&logoColor=black" alt="Tableau Skill Badge">
-  <img src="https://img.shields.io/badge/Excel-Expert-FEE0E9?style=flat&logo=microsoft-excel&logoColor=black" alt="Excel Skill Badge">
+  <img src="https://img.shields.io/badge/Power%20BI-Expert-FAA?style=flat&logo=powerbi&logoColor=black" alt="Power BI Skill Badge">
+  <img src="https://img.shields.io/badge/Tableau-Intermediate-DFA?style=flat&logo=tableau&logoColor=black" alt="Tableau Skill Badge">
+  <img src="https://img.shields.io/badge/Excel-Expert-FAA?style=flat&logo=microsoft-excel&logoColor=black" alt="Excel Skill Badge">
 </p>
 
 #### Programming & Databases
 <p>
-  <img src="https://img.shields.io/badge/Python-Experienced-C7DD9D?style=flat&logo=python&logoColor=black" alt="Python Skill Badge">
-  <img src="https://img.shields.io/badge/SQL-Advanced-FEE0E9?style=flat&logo=mysql&logoColor=black" alt="SQL Skill Badge">
-  <img src="https://img.shields.io/badge/FastAPI-Intermediate-C7DD9D?style=flat&logo=fastapi&logoColor=black" alt="FastAPI Badge">
+  <img src="https://img.shields.io/badge/Python-Experienced-DFA?style=flat&logo=python&logoColor=black" alt="Python Skill Badge">
+  <img src="https://img.shields.io/badge/SQL-Advanced-FAA?style=flat&logo=mysql&logoColor=black" alt="SQL Skill Badge">
+  <img src="https://img.shields.io/badge/FastAPI-Intermediate-DFA?style=flat&logo=fastapi&logoColor=black" alt="FastAPI Badge">
 </p>
 
 #### Machine Learning & Analytics
 <p>
-  <img src="https://img.shields.io/badge/Predictive%20Modeling-Experienced-FEE0E9?style=flat&logoColor=black" alt="Predictive Modeling Skill Badge">
-  <img src="https://img.shields.io/badge/Web%20Scraping-Experienced-C7DD9D?style=flat&logoColor=black" alt="Web Scraping Skill Badge">
-  <img src="https://img.shields.io/badge/Statistical%20Analysis-Experienced-FEE0E9?style=flat&logoColor=black" alt="Statistical Analysis Skill Badge">
+  <img src="https://img.shields.io/badge/Predictive%20Modeling-Experienced-FAA?style=flat&logoColor=black" alt="Predictive Modeling Skill Badge">
+  <img src="https://img.shields.io/badge/Web%20Scraping-Experienced-DFA?style=flat&logoColor=black" alt="Web Scraping Skill Badge">
+  <img src="https://img.shields.io/badge/Statistical%20Analysis-Experienced-FAA?style=flat&logoColor=black" alt="Statistical Analysis Skill Badge">
 </p>
 
-##  Let's Connect
+## Let's Connect
 
 I am currently seeking entry-level roles in Data Analytics and Machine Learning. Feel free to reach out:
 
