@@ -2,9 +2,9 @@
 
 Welcome! This repository contains the source code and project files for my professional data analysis portfolio website. 
 
-🌐 **View my live portfolio here:** [KajalGupta-tech.github.io](https://KajalGupta-tech.github.io/)
+ **View my live portfolio here:** [KajalGupta-tech.github.io](https://KajalGupta-tech.github.io/)
 
-## 🚀 About My Work
+## About My Work
 
 As a Data Analyst with a B.Sc. in Computer Science (Honours), my work focuses on bridging the gap between raw data and strategic business decisions. This portfolio demonstrates my ability to:
 - Build machine learning models for predictive analytics and anomaly detection.
@@ -12,7 +12,7 @@ As a Data Analyst with a B.Sc. in Computer Science (Honours), my work focuses on
 - Extract, clean, and model complex datasets using Python and SQL.
 - Transform complex data into clear, actionable storytelling.
 
-## 📊 Featured Projects
+##  Featured Projects
 
 ### 1. Predictive Analytics - Fraud Detection
 * **Tools:** Python (Scikit-Learn, Pandas), SQL, Machine Learning
@@ -26,7 +26,7 @@ As a Data Analyst with a B.Sc. in Computer Science (Honours), my work focuses on
 * **Tools:** Python, BeautifulSoup, Data Extraction
 * **Overview:** Developed a custom web scraping tool to extract real-time product prices, ratings, and customer reviews from Amazon, enabling deep market trend analysis and competitive pricing strategies.
 
-## 🛠️ Technical Skills
+##  Technical Skills
 
 #### Data Analysis & Visualization
 <p>
@@ -49,7 +49,7 @@ As a Data Analyst with a B.Sc. in Computer Science (Honours), my work focuses on
   <img src="https://img.shields.io/badge/Statistical%20Analysis-Experienced-FEE0E9?style=flat&logoColor=black" alt="Statistical Analysis Skill Badge">
 </p>
 
-## 📬 Let's Connect
+##  Let's Connect
 
 I am currently seeking entry-level roles in Data Analytics and Machine Learning. Feel free to reach out:
 
