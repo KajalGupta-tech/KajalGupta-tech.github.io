@@ -1,298 +1,763 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Kajal Gupta | Data Analysis & Machine Learning Portfolio</title>
-      
-    <link rel="icon" type="image/png" href="favicon-32x32.png">
-    <link rel="apple-touch-icon" href="favicon-32x32.png">
-    
-    <!-- Google Fonts for Elegant Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
-    <!-- Your Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kajal Gupta — Data Analyst</title>
+<meta name="description" content="Kajal Gupta — Data Analyst. SQL, Python, Power BI, Machine Learning & BI Dashboards." />
 
-    <!-- CUSTOM COLOR INJECTION -->
-    <style>
-        :root {
-            --soft-pink: #FAA;
-            --soft-green: #DFA;
-            --text-dark: #2c3e50;
-        }
+<!-- Fonts: Space Grotesk (display) + Inter (body/UI) + JetBrains Mono (data/code accents) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-        /* Header & Footer */
-        header, footer {
-            background-color: var(--soft-pink) !important;
-            color: var(--text-dark) !important;
-        }
-        
-        header p {
-            color: #555 !important;
-        }
+<!-- Tailwind (utility layer only — visual system defined below in custom CSS) -->
+<script src="https://cdn.tailwindcss.com"></script>
 
-        /* Navigation */
-        nav {
-            background-color: var(--soft-green) !important;
-        }
-        nav ul li a {
-            color: var(--text-dark) !important;
-            font-weight: bold;
-        }
-        nav ul li a:hover {
-            color: #000 !important;
-            text-decoration: underline;
-        }
+<style>
+  :root{
+    --bg: #0B0F19;
+    --bg-elevated: #0E1420;
+    --surface: #121a2b;
+    --surface-2: #0f1626;
+    --border: rgba(148,163,184,0.14);
+    --border-strong: rgba(148,163,184,0.28);
+    --primary: #6366F1;
+    --primary-2: #3B82F6;
+    --accent-purple: #A855F7;
+    --accent-cyan: #22D3EE;
+    --text: #F4F6FB;
+    --muted: #9AA6BF;
+    --muted-2: #6B7690;
+  }
 
-        /* Buttons */
-        .btn {
-            background-color: var(--soft-green) !important;
-            color: var(--text-dark) !important;
-            border: 1px solid #BCA !important;
-            font-weight: bold;
-        }
-        .btn:hover {
-            background-color: #BCA !important;
-        }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .font-display{ font-family: 'Space Grotesk', sans-serif; }
+  .font-mono{ font-family: 'JetBrains Mono', monospace; }
 
-        .btn-secondary {
-            background-color: var(--soft-pink) !important;
-            color: var(--text-dark) !important;
-            border: 1px solid #E99 !important;
-        }
-        .btn-secondary:hover {
-            background-color: #E99 !important;
-        }
+  /* ---------- Ambient background: grid + glow orbs ---------- */
+  .bg-grid{
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(148,163,184,0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148,163,184,0.055) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
+  }
+  .orb{
+    position: fixed; z-index: 0; border-radius: 50%; filter: blur(110px); pointer-events: none;
+    opacity: 0.35;
+  }
+  .orb-1{ width: 520px; height: 520px; background: var(--primary); top: -180px; left: -120px; }
+  .orb-2{ width: 480px; height: 480px; background: var(--accent-purple); top: 220px; right: -160px; opacity: 0.22; }
+  .orb-3{ width: 420px; height: 420px; background: var(--accent-cyan); bottom: -160px; left: 30%; opacity: 0.14; }
 
-        /* Social Links */
-        .social-links a {
-            color: var(--text-dark) !important;
-        }
-        .social-links a:hover {
-            color: #000 !important;
-            transform: scale(1.1);
-        }
+  section, header, footer{ position: relative; z-index: 1; }
 
-        /* Accents on Cards and Skills */
-        .project-card, .skill-column {
-            border-top: 5px solid var(--soft-green) !important;
-        }
-        
-        .skill-header i {
-            color: var(--soft-green) !important;
-            background-color: var(--text-dark);
-            padding: 10px;
-            border-radius: 50%;
-        }
+  /* ---------- Glass surfaces ---------- */
+  .glass{
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.01));
+    border: 1px solid var(--border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+  .glass-hover{ transition: border-color .35s ease, transform .35s ease, background .35s ease; }
+  .glass-hover:hover{
+    border-color: var(--border-strong);
+    transform: translateY(-4px);
+  }
 
-        h2 {
-            border-bottom: 3px solid var(--soft-pink);
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-    </style>
+  /* ---------- Gradient text / accents ---------- */
+  .grad-text{
+    background: linear-gradient(100deg, var(--primary-2) 0%, var(--primary) 45%, var(--accent-purple) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .grad-line{
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
+
+  /* ---------- Nav ---------- */
+  #navbar{
+    background: rgba(11,15,25,0.65);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-link{ position: relative; color: var(--muted); transition: color .25s ease; }
+  .nav-link::after{
+    content:''; position:absolute; left:0; bottom:-4px; width:0; height:1px;
+    background: var(--primary-2); transition: width .25s ease;
+  }
+  .nav-link:hover{ color: var(--text); }
+  .nav-link:hover::after{ width: 100%; }
+
+  #scroll-progress{
+    position: fixed; top:0; left:0; height: 2px; z-index: 60;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--primary), var(--accent-purple));
+    width: 0%;
+    transition: width .1s linear;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn-primary{
+    background: linear-gradient(135deg, var(--primary-2), var(--primary));
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset, 0 8px 30px -8px rgba(99,102,241,0.55);
+    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset, 0 14px 34px -10px rgba(99,102,241,0.7); }
+  .btn-ghost{
+    border: 1px solid var(--border-strong);
+    transition: border-color .25s ease, background .25s ease, transform .25s ease;
+  }
+  .btn-ghost:hover{ background: rgba(255,255,255,0.04); border-color: rgba(148,163,184,0.5); transform: translateY(-2px); }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{ opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.is-visible{ opacity: 1; transform: translateY(0); }
+
+  /* ---------- Section eyebrow ---------- */
+  .eyebrow{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--accent-cyan);
+  }
+  .eyebrow::before{ content: '// '; color: var(--muted-2); }
+
+  /* ---------- Hero terminal (signature element) ---------- */
+  .terminal{
+    background: linear-gradient(180deg, #0d1322, #0a0f1a);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    box-shadow: 0 30px 70px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(99,102,241,0.06);
+    overflow: hidden;
+  }
+  .terminal-bar{
+    background: rgba(255,255,255,0.02);
+    border-bottom: 1px solid var(--border);
+  }
+  .dot{ width: 10px; height: 10px; border-radius: 50%; }
+  .cursor{
+    display:inline-block; width: 7px; height: 1.05em; background: var(--accent-cyan);
+    vertical-align: text-bottom; margin-left: 2px;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{ opacity: 0; } }
+
+  .bar-rise{ transform-origin: bottom; animation: rise 1.1s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes rise{ from{ transform: scaleY(0); opacity: 0;} to{ transform: scaleY(1); opacity: 1; } }
+
+  /* ---------- Typing tagline ---------- */
+  #typed-cursor{
+    display:inline-block; width: 3px; margin-left: 3px; background: var(--accent-cyan);
+    animation: blink .9s steps(1) infinite;
+  }
+
+  /* ---------- Skill bars ---------- */
+  .skill-bar-track{ background: rgba(148,163,184,0.12); border-radius: 999px; overflow: hidden; }
+  .skill-bar-fill{
+    height: 100%; border-radius: 999px; width: 0%;
+    background: linear-gradient(90deg, var(--primary-2), var(--accent-purple));
+    transition: width 1.1s cubic-bezier(.2,.8,.2,1);
+  }
+
+  .tool-chip{
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    transition: all .25s ease;
+  }
+  .tool-chip:hover{
+    border-color: rgba(34,211,238,0.45);
+    background: rgba(34,211,238,0.06);
+    transform: translateY(-2px);
+  }
+
+  /* ---------- Project cards ---------- */
+  .project-card{
+    transition: transform .4s cubic-bezier(.2,.8,.2,1), border-color .4s ease, box-shadow .4s ease;
+  }
+  .project-card:hover{
+    transform: translateY(-6px);
+    border-color: rgba(99,102,241,0.5);
+    box-shadow: 0 24px 60px -24px rgba(99,102,241,0.35);
+  }
+  .project-card .glow{
+    opacity: 0; transition: opacity .4s ease;
+    background: radial-gradient(300px circle at var(--mx,50%) var(--my,0%), rgba(99,102,241,0.14), transparent 60%);
+  }
+  .project-card:hover .glow{ opacity: 1; }
+
+  /* ---------- Timeline ---------- */
+  .timeline-line{
+    background: linear-gradient(180deg, var(--primary), var(--accent-purple), transparent);
+    width: 2px;
+  }
+  .timeline-dot{
+    box-shadow: 0 0 0 4px rgba(99,102,241,0.15), 0 0 20px rgba(99,102,241,0.6);
+  }
+
+  ::selection{ background: rgba(99,102,241,0.35); color: #fff; }
+
+  ::-webkit-scrollbar{ width: 10px; }
+  ::-webkit-scrollbar-track{ background: var(--bg); }
+  ::-webkit-scrollbar-thumb{ background: #1c2437; border-radius: 8px; }
+  ::-webkit-scrollbar-thumb:hover{ background: #262f47; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--accent-cyan); outline-offset: 3px; border-radius: 4px;
+  }
+</style>
 </head>
-<body>
 
-<!-- HEADER SECTION -->
-<header>
-    <div class="container">
-        <h1>Kajal Gupta</h1>
-        <p>Data Analyst | Machine Learning & BI Developer</p>
-        <div class="social-links">
-            <a href="https://linkedin.com/in/kajalgupta19" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/KajalGupta-tech" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="mailto:projects.kajalgupta@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
-            <a href="assets/Kajal_Gupta_CV.pdf" download title="Download CV"><i class="fas fa-file-arrow-down"></i></a>
-        </div>
+<body class="antialiased">
+
+<div id="scroll-progress"></div>
+<div class="bg-grid"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- ============ NAV ============ -->
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50">
+  <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#home" class="font-display font-bold text-lg tracking-tight">
+      Kajal<span class="grad-text">.</span><span class="font-mono text-sm text-[var(--muted)] font-normal ml-1">data</span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-8 font-mono text-sm">
+      <a href="#about" class="nav-link">01. About</a>
+      <a href="#skills" class="nav-link">02. Skills</a>
+      <a href="#projects" class="nav-link">03. Projects</a>
+      <a href="#journey" class="nav-link">04. Journey</a>
+      <a href="#contact" class="nav-link">05. Contact</a>
     </div>
+
+    <div class="hidden md:flex items-center gap-3">
+      <a href="https://github.com/KajalGupta-tech" target="_blank" rel="noopener" class="btn-ghost rounded-lg px-4 py-2 text-sm font-medium flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.78 10.78.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.05-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 2.86-.39c.97 0 1.94.13 2.86.39 2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.81 1.17 3.05 0 4.37-2.66 5.34-5.2 5.62.41.36.77 1.06.77 2.14 0 1.54-.01 2.79-.01 3.17 0 .3.2.66.79.55A11.02 11.02 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5z"/></svg>
+        GitHub
+      </a>
+    </div>
+
+    <button id="menu-btn" class="md:hidden w-9 h-9 grid place-items-center rounded-lg border border-[var(--border-strong)]" aria-label="Open menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </nav>
+
+  <!-- mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden px-6 pb-5 font-mono text-sm flex flex-col gap-4 border-t border-[var(--border)]">
+    <a href="#about" class="nav-link py-1">01. About</a>
+    <a href="#skills" class="nav-link py-1">02. Skills</a>
+    <a href="#projects" class="nav-link py-1">03. Projects</a>
+    <a href="#journey" class="nav-link py-1">04. Journey</a>
+    <a href="#contact" class="nav-link py-1">05. Contact</a>
+    <a href="https://github.com/KajalGupta-tech" target="_blank" rel="noopener" class="btn-ghost rounded-lg px-4 py-2 text-center mt-1">GitHub Profile</a>
+  </div>
 </header>
 
-<!-- NAVIGATION -->
-<nav>
-    <div class="container">
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-</nav>
+<!-- ============ HERO ============ -->
+<section id="home" class="min-h-screen flex items-center pt-28 pb-20 px-6">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_1fr] gap-14 items-center w-full">
 
-<!-- ABOUT SECTION -->
-<section id="about" class="section">
-    <div class="container">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <img src="assets/images/profile-photo.jpg" alt="Kajal Gupta" class="profile-photo">
-            <div class="about-text">
-                <p>I'm a Data Analyst and recent B.Sc. Computer Science (Honours) graduate passionate about helping businesses make sense of their data. I enjoy transforming complex, messy datasets into clear stories and actionable insights. My focus is on building dashboards that get used, automating repetitive tasks, and creating predictive models that help businesses plan for the future.</p>
-                <p>With expertise in Python, SQL, Power BI, and machine learning, I specialize in building end-to-end solutions—from web scraping and data modeling to advanced BI reporting and anomaly detection. When I'm not working with data, I enjoy brewing a great cup of coffee, practicing calligraphy, drawing, and diving into a good book.</p>
-            </div>
+    <!-- left -->
+    <div>
+      <div class="reveal flex items-center gap-3 mb-6">
+        <span class="w-2 h-2 rounded-full bg-[var(--accent-cyan)] animate-pulse"></span>
+        <span class="eyebrow">open to data analyst / ML roles</span>
+      </div>
+
+      <h1 class="reveal font-display font-bold leading-[1.05] text-4xl sm:text-5xl lg:text-6xl mb-6">
+        Kajal Gupta —<br/>
+        <span class="grad-text">turning raw data</span><br/>
+        into decisions.
+      </h1>
+
+      <p class="reveal text-lg text-[var(--muted)] mb-2 h-8 font-mono">
+        <span id="typed-text"></span><span id="typed-cursor">&nbsp;</span>
+      </p>
+
+      <p class="reveal text-[var(--muted)] max-w-xl mb-9 leading-relaxed">
+        B.Sc. Computer Science graduate from University of Delhi, building predictive models,
+        BI dashboards, and clean data pipelines with Python, SQL, and Power BI — with an eye for
+        the story hiding inside the numbers.
+      </p>
+
+      <div class="reveal flex flex-wrap items-center gap-4">
+        <a href="#projects" class="btn-primary rounded-lg px-6 py-3 font-semibold text-white text-sm">View Projects →</a>
+        <a href="https://github.com/KajalGupta-tech" target="_blank" rel="noopener" class="btn-ghost rounded-lg px-6 py-3 font-semibold text-sm flex items-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.78 10.78.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.05-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 2.86-.39c.97 0 1.94.13 2.86.39 2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.81 1.17 3.05 0 4.37-2.66 5.34-5.2 5.62.41.36.77 1.06.77 2.14 0 1.54-.01 2.79-.01 3.17 0 .3.2.66.79.55A11.02 11.02 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5z"/></svg>
+          GitHub Profile
+        </a>
+      </div>
+
+      <div class="reveal grad-line mt-12 mb-6"></div>
+      <div class="reveal flex flex-wrap gap-x-10 gap-y-4 font-mono text-xs text-[var(--muted-2)]">
+        <span>SQL</span><span>Python</span><span>Power BI</span><span>Excel</span><span>Scikit-learn</span><span>ETL</span>
+      </div>
+    </div>
+
+    <!-- right: signature terminal element -->
+    <div class="reveal">
+      <div class="terminal">
+        <div class="terminal-bar flex items-center gap-2 px-4 py-3">
+          <span class="dot" style="background:#ff5f57"></span>
+          <span class="dot" style="background:#febc2e"></span>
+          <span class="dot" style="background:#28c840"></span>
+          <span class="font-mono text-xs text-[var(--muted-2)] ml-2">fraud_detection.sql</span>
         </div>
-    </div>
-</section>
-
-<!-- PROJECTS SECTION -->
-<section id="projects" class="section">
-    <div class="container">
-        <h2>Featured Projects</h2>
-        <div class="projects-grid">
-
-            <!-- Project 1 -->
-             <div class="project-card">
-                <img src="assets/images/project-fraud.jpg" alt="Fraud Detection Project Preview">
-                <div class="project-card-content">
-                    <h3>Predictive Analytics: Fraud Detection</h3>
-                    <p>Engineered features and built machine learning classification models (Logistic Regression, Random Forest) using Python and SQL to identify fraudulent patterns across large transactional datasets.</p>
-                    <div class="project-buttons">
-                        <a href="https://github.com/KajalGupta-tech" target="_blank" class="btn">View Code</a>
-                    </div>
-                </div>
+        <div class="p-5 font-mono text-[13px] leading-relaxed">
+          <div id="sql-typed" class="text-[var(--muted)] whitespace-pre-wrap min-h-[92px]"></div>
+          <div id="chart-block" class="mt-5 opacity-0 transition-opacity duration-700">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[var(--accent-cyan)] text-xs"># model_accuracy.png</span>
+              <span class="text-[var(--muted-2)] text-xs">F1: 0.94</span>
             </div>
-
-            <!-- Project 2 -->
-            <div class="project-card">
-                <img src="assets/images/project-swiggy.jpg" alt="Swiggy Dashboard Preview">
-                <div class="project-card-content">
-                    <h3>Swiggy Operations & Customer Analytics</h3>
-                    <p>Designed an end-to-end interactive Power BI dashboard analyzing delivery times and peak demand, utilizing DAX, Power Query, and time-series forecasting to generate actionable retention strategies.</p>
-                    <div class="project-buttons">
-                        <a href="https://github.com/KajalGupta-tech" target="_blank" class="btn">Documentation</a>
-                        <a href="#" target="_blank" class="btn btn-secondary">View Dashboard</a>
-                    </div>
-                </div>
+            <div class="flex items-end gap-2 h-24">
+              <div class="bar-rise flex-1 rounded-t" style="height:55%; background:linear-gradient(180deg,#6366F1,#3B82F6); animation-delay:.05s"></div>
+              <div class="bar-rise flex-1 rounded-t" style="height:78%; background:linear-gradient(180deg,#818cf8,#6366F1); animation-delay:.15s"></div>
+              <div class="bar-rise flex-1 rounded-t" style="height:40%; background:linear-gradient(180deg,#a855f7,#6366F1); animation-delay:.25s"></div>
+              <div class="bar-rise flex-1 rounded-t" style="height:94%; background:linear-gradient(180deg,#22d3ee,#3B82F6); animation-delay:.35s"></div>
+              <div class="bar-rise flex-1 rounded-t" style="height:66%; background:linear-gradient(180deg,#6366F1,#a855f7); animation-delay:.45s"></div>
+              <div class="bar-rise flex-1 rounded-t" style="height:85%; background:linear-gradient(180deg,#3B82F6,#22d3ee); animation-delay:.55s"></div>
             </div>
-
-            <!-- Project 3 -->
-            <div class="project-card">
-                <img src="assets/images/project-amazon.jpg" alt="Amazon Web Scraper Preview">
-                <div class="project-card-content">
-                    <h3>Amazon Product Web Scraper</h3>
-                    <p>Developed a custom web scraping tool using Python and BeautifulSoup to extract real-time product prices, ratings, and customer reviews to enable competitive pricing strategy insights.</p>
-                    <div class="project-buttons">
-                        <a href="https://github.com/KajalGupta-tech" target="_blank" class="btn">View Code</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="project-card">
-                <img src="assets/images/project-recommendation.jpg" alt="Recommendation Engine Preview">
-                <div class="project-card-content">
-                    <h3>End-to-End Recommendation Engine</h3>
-                    <p>Currently building a robust recommendation system utilizing FastAPI for backend deployment, SQL for database management, and advanced machine learning models to deliver personalized results.</p>
-                    <div class="project-buttons">
-                        <a href="https://github.com/KajalGupta-tech" target="_blank" class="btn">View Code</a>
-                    </div>
-                </div>
-            </div>
-
+          </div>
         </div>
+      </div>
     </div>
+
+  </div>
 </section>
 
-<!-- SKILLS SECTION -->
-<section id="skills" class="section">
-    <div class="container">
-        <h2>Technical Skillset</h2>
-        <div class="skills-table">
-            
-            <!-- Column 1: Data Visualization -->
-            <div class="skill-column">
-                <div class="skill-header">
-                    <i class="fas fa-chart-pie"></i>
-                    <h3>Data Visualization</h3>
-                </div>
-                <ul class="skill-list">
-                    <li>Power BI (Expert)</li>
-                    <li>Tableau</li>
-                    <li>Advanced Excel Dashboards</li>
-                    <li>Matplotlib & Seaborn</li>
-                </ul>
-            </div>
+<!-- ============ ABOUT ============ -->
+<section id="about" class="py-28 px-6 border-t border-[var(--border)]">
+  <div class="max-w-6xl mx-auto">
+    <p class="eyebrow reveal mb-3">about</p>
+    <h2 class="reveal font-display font-bold text-3xl sm:text-4xl mb-14">The person behind the pipelines</h2>
 
-            <!-- Column 2: Data Analysis -->
-            <div class="skill-column">
-                <div class="skill-header">
-                    <i class="fas fa-search-plus"></i>
-                    <h3>Programming & Data</h3>
-                </div>
-                <ul class="skill-list">
-                    <li>Python (Pandas, NumPy)</li>
-                    <li>SQL (Advanced Queries)</li>
-                    <li>Web Scraping (BeautifulSoup)</li>
-                    <li>FastAPI & C++ (Basics)</li>
-                </ul>
-            </div>
+    <div class="grid lg:grid-cols-[1.3fr_1fr] gap-12">
+      <div class="reveal space-y-5 text-[var(--muted)] leading-relaxed text-[15px]">
+        <p>
+          I'm a data analyst who likes messy datasets — the kind with nulls, duplicates, and outliers
+          that most people avoid. That's usually where the real story starts. I studied
+          <span class="text-[var(--text)]">Computer Science (Honours) at the University of Delhi</span>,
+          and along the way built a habit of asking "so what does this number actually mean for
+          the business?" before touching a single chart.
+        </p>
+        <p>
+          My work sits at the intersection of <span class="text-[var(--text)]">statistics, engineering,
+          and storytelling</span> — cleaning and modeling data in Python, querying it in SQL, and
+          shipping the insight as a dashboard someone will actually open on a Monday morning.
+        </p>
+        <p>
+          Recently I completed a virtual internship with <span class="text-[var(--text)]">Deloitte Australia
+          (via Forage)</span>, applying data visualization and modeling skills to real business scenarios —
+          and I'm now looking for a full-time seat at that table.
+        </p>
+      </div>
 
-            <!-- Column 3: Data Modeling & ETL -->
-            <div class="skill-column">
-                <div class="skill-header">
-                    <i class="fas fa-cogs"></i>
-                    <h3>Machine Learning & BI</h3>
-                </div>
-                <ul class="skill-list">
-                    <li>Predictive Modeling</li>
-                    <li>Scikit-Learn</li>
-                    <li>DAX & Power Query</li>
-                    <li>Statistical Analysis & EDA</li>
-                </ul>
-            </div>
-
+      <div class="reveal glass rounded-2xl p-7 space-y-5">
+        <div class="flex justify-between items-center pb-4 border-b border-[var(--border)]">
+          <span class="font-mono text-xs text-[var(--muted-2)]">Location</span>
+          <span class="text-sm">New Delhi, India</span>
         </div>
+        <div class="flex justify-between items-center pb-4 border-b border-[var(--border)]">
+          <span class="font-mono text-xs text-[var(--muted-2)]">Education</span>
+          <span class="text-sm text-right">B.Sc. CS (Hons), DU</span>
+        </div>
+        <div class="flex justify-between items-center pb-4 border-b border-[var(--border)]">
+          <span class="font-mono text-xs text-[var(--muted-2)]">Focus</span>
+          <span class="text-sm text-right">Analytics · ML · BI</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="font-mono text-xs text-[var(--muted-2)]">Status</span>
+          <span class="text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-cyan)]"></span>Open to work</span>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- CONTACT FORM SECTION -->
-<section id="contact" class="section">
-    <div class="container">
-        <h2>Send me a message</h2>
-        
-        <form action="https://formsubmit.co/projects.kajalgupta@gmail.com" method="POST" class="contact-form">
-            <p> Interested in collaborating or have questions about my work? I'd love to hear from you!</p>
+<!-- ============ SKILLS ============ -->
+<section id="skills" class="py-28 px-6 border-t border-[var(--border)]">
+  <div class="max-w-6xl mx-auto">
+    <p class="eyebrow reveal mb-3">skills</p>
+    <h2 class="reveal font-display font-bold text-3xl sm:text-4xl mb-4">What I build with</h2>
+    <p class="reveal text-[var(--muted)] max-w-2xl mb-14">Core tools I use daily, plus the wider stack I reach for when a project needs more — from cloud storage to automated pipelines.</p>
 
-            <!-- Form Fields -->
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" placeholder="Your name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Your email" required>
-            </div>
-            <div class="form-group">
-                <label for="subject">Subject</label>
-                <input type="text" name="subject" id="subject" placeholder="Subject" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea name="message" id="message" rows="6" placeholder="Your message" required></textarea>
-            </div>
-            
-            <!-- Submit Button -->
-            <button type="submit" class="btn">Send Message</button>
-
-        </form>
+    <!-- Core skills - progress bars -->
+    <div class="grid sm:grid-cols-2 gap-x-12 gap-y-8 mb-16">
+      <div class="reveal skill-item" data-level="90">
+        <div class="flex justify-between mb-2 font-mono text-sm"><span>SQL</span><span class="text-[var(--muted-2)]">Advanced</span></div>
+        <div class="skill-bar-track h-2"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="reveal skill-item" data-level="88">
+        <div class="flex justify-between mb-2 font-mono text-sm"><span>Python</span><span class="text-[var(--muted-2)]">Advanced</span></div>
+        <div class="skill-bar-track h-2"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="reveal skill-item" data-level="85">
+        <div class="flex justify-between mb-2 font-mono text-sm"><span>Power BI</span><span class="text-[var(--muted-2)]">Advanced</span></div>
+        <div class="skill-bar-track h-2"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="reveal skill-item" data-level="82">
+        <div class="flex justify-between mb-2 font-mono text-sm"><span>Excel</span><span class="text-[var(--muted-2)]">Advanced</span></div>
+        <div class="skill-bar-track h-2"><div class="skill-bar-fill"></div></div>
+      </div>
     </div>
+
+    <!-- Tool categories -->
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="reveal glass rounded-2xl p-6">
+        <h3 class="font-display font-semibold mb-4 flex items-center gap-2 text-[var(--accent-cyan)]">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
+          Data & ML
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Pandas</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">NumPy</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Matplotlib</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Seaborn</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Scikit-learn</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Data Cleaning</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Data Visualization</span>
+        </div>
+      </div>
+
+      <div class="reveal glass rounded-2xl p-6">
+        <h3 class="font-display font-semibold mb-4 flex items-center gap-2 text-[var(--primary-2)]">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
+          Engineering & Cloud
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">ETL Pipelines</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Data Warehousing</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">DBT</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Docker</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">AWS</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Azure</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">MySQL</span>
+        </div>
+      </div>
+
+      <div class="reveal glass rounded-2xl p-6">
+        <h3 class="font-display font-semibold mb-4 flex items-center gap-2 text-[var(--accent-purple)]">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          Workflow & APIs
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Git & GitHub</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">APIs</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Automation</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Web Scraping</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Tableau</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Google Analytics</span>
+          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Jupyter</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-    <div class="container">
-        <p>&copy; 2026 Kajal Gupta. All rights reserved.</p>
+<!-- ============ PROJECTS ============ -->
+<section id="projects" class="py-28 px-6 border-t border-[var(--border)]">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-wrap justify-between items-end gap-4 mb-14">
+      <div>
+        <p class="eyebrow reveal mb-3">projects</p>
+        <h2 class="reveal font-display font-bold text-3xl sm:text-4xl">Selected work</h2>
+      </div>
+      <p id="repo-status" class="reveal font-mono text-xs text-[var(--muted-2)]">loading github activity…</p>
     </div>
+
+    <div id="project-grid" class="grid md:grid-cols-2 gap-6">
+      <!-- project cards injected by JS (with static fallback data) -->
+    </div>
+
+    <div class="reveal text-center mt-14">
+      <a href="https://github.com/KajalGupta-tech?tab=repositories" target="_blank" rel="noopener" class="btn-ghost inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-medium">
+        See all repositories on GitHub
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOURNEY / TIMELINE ============ -->
+<section id="journey" class="py-28 px-6 border-t border-[var(--border)]">
+  <div class="max-w-4xl mx-auto">
+    <p class="eyebrow reveal mb-3">experience & learning</p>
+    <h2 class="reveal font-display font-bold text-3xl sm:text-4xl mb-16">The journey so far</h2>
+
+    <div class="relative pl-10">
+      <div class="timeline-line absolute left-0 top-1 bottom-0"></div>
+
+      <div class="reveal relative mb-14">
+        <span class="timeline-dot absolute -left-[42px] top-1 w-3 h-3 rounded-full bg-[var(--primary-2)]"></span>
+        <p class="font-mono text-xs text-[var(--muted-2)] mb-1">JULY 2026</p>
+        <h3 class="font-display font-semibold text-lg mb-1">Data Analytics Virtual Internship — Deloitte Australia</h3>
+        <p class="text-[var(--muted)] text-sm leading-relaxed">Completed via Forage, applying data visualization, analysis, modeling and spreadsheet skills to real-world business scenarios.</p>
+      </div>
+
+      <div class="reveal relative mb-14">
+        <span class="timeline-dot absolute -left-[42px] top-1 w-3 h-3 rounded-full bg-[var(--accent-purple)]"></span>
+        <p class="font-mono text-xs text-[var(--muted-2)] mb-1">2025</p>
+        <h3 class="font-display font-semibold text-lg mb-1">Fraud Detection & Power BI Sales Dashboard</h3>
+        <p class="text-[var(--muted)] text-sm leading-relaxed">Built an end-to-end predictive analytics pipeline and a forecasting-driven BI dashboard — see Projects above.</p>
+      </div>
+
+      <div class="reveal relative mb-14">
+        <span class="timeline-dot absolute -left-[42px] top-1 w-3 h-3 rounded-full bg-[var(--accent-cyan)]"></span>
+        <p class="font-mono text-xs text-[var(--muted-2)] mb-1">2024</p>
+        <h3 class="font-display font-semibold text-lg mb-1">Swiggy Analytics Dashboard & Amazon Web Scraper</h3>
+        <p class="text-[var(--muted)] text-sm leading-relaxed">Analyzed delivery and demand patterns in Power BI, and built a Python scraper for competitive pricing insight.</p>
+      </div>
+
+      <div class="reveal relative mb-14">
+        <span class="timeline-dot absolute -left-[42px] top-1 w-3 h-3 rounded-full bg-[var(--primary-2)]"></span>
+        <p class="font-mono text-xs text-[var(--muted-2)] mb-1">2022 – 2026</p>
+        <h3 class="font-display font-semibold text-lg mb-1">B.Sc. Computer Science (Honours), University of Delhi</h3>
+        <p class="text-[var(--muted)] text-sm leading-relaxed">Deen Dayal Upadhyaya College · CGPA 7.73 (Sem I–VI), SGPA 8.0 (Sem VII).</p>
+      </div>
+
+      <div class="reveal relative">
+        <span class="timeline-dot absolute -left-[42px] top-1 w-3 h-3 rounded-full bg-[var(--accent-purple)]"></span>
+        <p class="font-mono text-xs text-[var(--muted-2)] mb-1">CERTIFICATIONS</p>
+        <h3 class="font-display font-semibold text-lg mb-1">Continuous learning</h3>
+        <p class="text-[var(--muted)] text-sm leading-relaxed">Alex's Data Analyst Bootcamp · Power BI for Beginners (Simplilearn) · Advanced Diploma in Computer Application (ADCA).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="py-28 px-6 border-t border-[var(--border)]">
+  <div class="max-w-4xl mx-auto text-center">
+    <p class="eyebrow reveal mb-3 justify-center flex">let's connect</p>
+    <h2 class="reveal font-display font-bold text-3xl sm:text-5xl mb-6">Got a role or a dataset<br/>worth exploring?</h2>
+    <p class="reveal text-[var(--muted)] max-w-xl mx-auto mb-12">I'm actively looking for entry-level opportunities in data analytics, machine learning, or IT. Reach out — I reply fast.</p>
+
+    <div class="reveal grid sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
+      <a href="mailto:projects.kajalgupta@gmail.com" class="glass glass-hover rounded-2xl p-6 flex flex-col items-center gap-3">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[var(--accent-cyan)]"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg>
+        <span class="font-mono text-xs text-[var(--muted-2)]">Email</span>
+        <span class="text-sm break-all">projects.kajalgupta@gmail.com</span>
+      </a>
+      <a href="https://linkedin.com/in/kajalgupta19" target="_blank" rel="noopener" class="glass glass-hover rounded-2xl p-6 flex flex-col items-center gap-3">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[var(--primary-2)]"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v5M8 8v.01M12 16v-5M12 11c0-1.5 1-2 2.2-2 1.4 0 1.8 1 1.8 2.3V16"/></svg>
+        <span class="font-mono text-xs text-[var(--muted-2)]">LinkedIn</span>
+        <span class="text-sm">/in/kajalgupta19</span>
+      </a>
+      <a href="https://github.com/KajalGupta-tech" target="_blank" rel="noopener" class="glass glass-hover rounded-2xl p-6 flex flex-col items-center gap-3">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="text-[var(--accent-purple)]"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.78 10.78.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.05-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 2.86-.39c.97 0 1.94.13 2.86.39 2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.81 1.17 3.05 0 4.37-2.66 5.34-5.2 5.62.41.36.77 1.06.77 2.14 0 1.54-.01 2.79-.01 3.17 0 .3.2.66.79.55A11.02 11.02 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5z"/></svg>
+        <span class="font-mono text-xs text-[var(--muted-2)]">GitHub</span>
+        <span class="text-sm">KajalGupta-tech</span>
+      </a>
+    </div>
+
+    <a href="tel:+918076034544" class="reveal inline-block mt-8 font-mono text-sm text-[var(--muted)] hover:text-[var(--text)] transition-colors">+91 8076034544</a>
+  </div>
+</section>
+
+<footer class="py-10 px-6 border-t border-[var(--border)]">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 font-mono text-xs text-[var(--muted-2)]">
+    <span>© 2026 Kajal Gupta. Built with care, coffee, and a lot of dataframes.</span>
+    <button id="back-to-top" class="btn-ghost rounded-lg px-4 py-2 flex items-center gap-2">
+      Back to top
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
+  </div>
 </footer>
 
-<script src="assets/js/main.js"></script>
+<script>
+/* ================= Scroll progress bar ================= */
+const progressBar = document.getElementById('scroll-progress');
+function updateProgress(){
+  const h = document.documentElement;
+  const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+  progressBar.style.width = scrolled + '%';
+}
+document.addEventListener('scroll', updateProgress, { passive: true });
+
+/* ================= Mobile menu ================= */
+const menuBtn = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+/* ================= Back to top ================= */
+document.getElementById('back-to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ================= Reveal on scroll ================= */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting){
+      setTimeout(() => entry.target.classList.add('is-visible'), i * 60);
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ================= Skill bars fill on view ================= */
+const skillObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting){
+      const level = entry.target.getAttribute('data-level');
+      entry.target.querySelector('.skill-bar-fill').style.width = level + '%';
+      skillObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('.skill-item').forEach(el => skillObserver.observe(el));
+
+/* ================= Hero typing tagline ================= */
+const taglines = ["Data Analyst.", "Data Storyteller.", "Insight Engineer.", "Dashboard Builder."];
+const typedEl = document.getElementById('typed-text');
+let tIndex = 0, cIndex = 0, deleting = false;
+
+function typeLoop(){
+  const current = taglines[tIndex];
+  if (!deleting){
+    cIndex++;
+    typedEl.textContent = current.slice(0, cIndex);
+    if (cIndex === current.length){ deleting = true; setTimeout(typeLoop, 1400); return; }
+  } else {
+    cIndex--;
+    typedEl.textContent = current.slice(0, cIndex);
+    if (cIndex === 0){ deleting = false; tIndex = (tIndex + 1) % taglines.length; }
+  }
+  setTimeout(typeLoop, deleting ? 35 : 65);
+}
+typeLoop();
+
+/* ================= Terminal SQL typing (signature element) ================= */
+const sqlLines = [
+"SELECT customer_id,",
+"       amount,",
+"       is_fraud",
+"FROM   transactions",
+"WHERE  risk_score > 0.8",
+"ORDER  BY amount DESC;",
+"",
+"-- 12,480 rows scanned",
+"-- model: RandomForest",
+"-- accuracy: 96.2%"
+];
+const sqlEl = document.getElementById('sql-typed');
+const chartBlock = document.getElementById('chart-block');
+
+async function typeSQL(){
+  for (const line of sqlLines){
+    let shown = '';
+    for (const ch of line){
+      shown += ch;
+      sqlEl.innerHTML = sqlEl.dataset.done ? sqlEl.dataset.done + shown : shown;
+      await new Promise(r => setTimeout(r, 16));
+    }
+    sqlEl.dataset.done = (sqlEl.dataset.done || '') + line + '\n';
+    sqlEl.innerHTML = sqlEl.dataset.done;
+    await new Promise(r => setTimeout(r, 90));
+  }
+  chartBlock.style.opacity = '1';
+}
+// start once terminal is in view
+const termObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting){ typeSQL(); termObserver.disconnect(); }
+  });
+}, { threshold: 0.3 });
+termObserver.observe(document.querySelector('.terminal'));
+
+/* ================= Projects: static fallback + optional GitHub fetch ================= */
+const fallbackProjects = [
+  {
+    title: "End-to-End Predictive Analytics — Fraud Detection",
+    desc: "Cleaned and engineered features across a large transactional dataset, then built and evaluated Logistic Regression and Random Forest classifiers, reporting results via confusion matrices and F1-scores.",
+    tech: ["Python", "Pandas", "Scikit-learn", "EDA"],
+    link: "https://github.com/KajalGupta-tech"
+  },
+  {
+    title: "Sales & Customer Insights Dashboard",
+    desc: "End-to-end Power BI project: Power Query transformation, DAX measures, interactive KPI dashboards, time-series forecasting, and automated scheduled PDF exports.",
+    tech: ["Power BI", "DAX", "Power Query", "Forecasting"],
+    link: "https://github.com/KajalGupta-tech"
+  },
+  {
+    title: "Swiggy Customer & Restaurant Analytics",
+    desc: "Analyzed delivery times, order frequency, and peak demand in Power BI, with interactive slicers that improved user-driven analysis efficiency by 25%.",
+    tech: ["Power BI", "Demand Forecasting", "DAX"],
+    link: "https://github.com/KajalGupta-tech"
+  },
+  {
+    title: "Amazon Product Web Scraper",
+    desc: "Python + BeautifulSoup scraper extracting product prices, ratings, and reviews from Amazon to power market trend and competitive pricing analysis.",
+    tech: ["Python", "BeautifulSoup", "Web Scraping"],
+    link: "https://github.com/KajalGupta-tech"
+  }
+];
+
+function projectCard(p){
+  return `
+  <div class="project-card reveal glass rounded-2xl p-7 relative overflow-hidden" data-tilt>
+    <div class="glow absolute inset-0 pointer-events-none"></div>
+    <div class="relative">
+      <div class="flex justify-between items-start mb-4">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="text-[var(--accent-cyan)]"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
+        <a href="${p.link}" target="_blank" rel="noopener" aria-label="Open repository" class="text-[var(--muted-2)] hover:text-[var(--text)] transition-colors">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+      </div>
+      <h3 class="font-display font-semibold text-lg mb-2">${p.title}</h3>
+      <p class="text-[var(--muted)] text-sm leading-relaxed mb-5">${p.desc}</p>
+      <div class="flex flex-wrap gap-2">
+        ${p.tech.map(t => `<span class="font-mono text-[11px] px-2.5 py-1 rounded-md border border-[var(--border)] text-[var(--muted)]">${t}</span>`).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+const grid = document.getElementById('project-grid');
+const statusEl = document.getElementById('repo-status');
+
+function renderProjects(list){
+  grid.innerHTML = list.map(projectCard).join('');
+  grid.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  // cursor-follow glow
+  grid.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+    });
+  });
+}
+
+renderProjects(fallbackProjects);
+
+// Optional: try to enrich with live GitHub data (falls back silently if unavailable)
+fetch('https://api.github.com/users/KajalGupta-tech/repos?sort=updated&per_page=4')
+  .then(res => { if (!res.ok) throw new Error('github api unavailable'); return res.json(); })
+  .then(repos => {
+    if (Array.isArray(repos) && repos.length){
+      statusEl.textContent = `${repos.length} repos synced from GitHub`;
+    } else {
+      statusEl.textContent = 'showcasing featured projects';
+    }
+  })
+  .catch(() => { statusEl.textContent = 'showcasing featured projects'; });
+</script>
 
 </body>
 </html>
