@@ -513,15 +513,15 @@
       <div class="reveal relative mb-14">
         <span class="timeline-dot absolute -left-[42px] top-1 w-3 h-3 rounded-full bg-[var(--accent-purple)]"></span>
         <p class="font-mono text-xs text-[var(--muted-2)] mb-1">2025</p>
-        <h3 class="font-display font-semibold text-lg mb-1">Fraud Detection & Power BI Sales Dashboard</h3>
-        <p class="text-[var(--muted)] text-sm leading-relaxed">Built an end-to-end predictive analytics pipeline and a forecasting-driven BI dashboard — see Projects above.</p>
+        <h3 class="font-display font-semibold text-lg mb-1">Swiggy, Spotify & Logistics Analytics Dashboards</h3>
+        <p class="text-[var(--muted)] text-sm leading-relaxed">Built end-to-end BI dashboards and data pipelines across food delivery, music streaming, and logistics domains — see Projects above.</p>
       </div>
 
       <div class="reveal relative mb-14">
         <span class="timeline-dot absolute -left-[42px] top-1 w-3 h-3 rounded-full bg-[var(--accent-cyan)]"></span>
         <p class="font-mono text-xs text-[var(--muted-2)] mb-1">2024</p>
-        <h3 class="font-display font-semibold text-lg mb-1">Swiggy Analytics Dashboard & Amazon Web Scraper</h3>
-        <p class="text-[var(--muted)] text-sm leading-relaxed">Analyzed delivery and demand patterns in Power BI, and built a Python scraper for competitive pricing insight.</p>
+        <h3 class="font-display font-semibold text-lg mb-1">Early Data Analytics Projects</h3>
+        <p class="text-[var(--muted)] text-sm leading-relaxed">Built first end-to-end dashboards and Python data-cleaning pipelines, laying the groundwork for the current project portfolio.</p>
       </div>
 
       <div class="reveal relative mb-14">
@@ -683,27 +683,21 @@ termObserver.observe(document.querySelector('.terminal'));
 /* ================= Projects: static fallback + optional GitHub fetch ================= */
 const fallbackProjects = [
   {
-    title: "End-to-End Predictive Analytics — Fraud Detection",
-    desc: "Cleaned and engineered features across a large transactional dataset, then built and evaluated Logistic Regression and Random Forest classifiers, reporting results via confusion matrices and F1-scores.",
-    tech: ["Python", "Pandas", "Scikit-learn", "EDA"],
+    title: "Swiggy Order & Delivery Analytics Dashboard",
+    desc: "Built a multi-page Power BI dashboard (hubs, drivers, vehicles) plus SQL/Python EDA on food-delivery data — covering on-time delivery rate, hub capacity utilization, driver performance, and delayed-order drivers.",
+    tech: ["Power BI", "SQL", "Python", "DAX"],
     link: "https://github.com/KajalGupta-tech"
   },
   {
-    title: "Sales & Customer Insights Dashboard",
-    desc: "End-to-end Power BI project: Power Query transformation, DAX measures, interactive KPI dashboards, time-series forecasting, and automated scheduled PDF exports.",
-    tech: ["Power BI", "DAX", "Power Query", "Forecasting"],
+    title: "Spotify Listening History Analytics",
+    desc: "Designed a 3-page Power BI report (overview, listening patterns, drill-through grid) analyzing 150K+ streaming records — with a dynamic quadrant analysis, hour-by-day heatmap, and YoY growth KPIs.",
+    tech: ["Power BI", "DAX", "Time Intelligence", "Data Modeling"],
     link: "https://github.com/KajalGupta-tech"
   },
   {
-    title: "Swiggy Customer & Restaurant Analytics",
-    desc: "Analyzed delivery times, order frequency, and peak demand in Power BI, with interactive slicers that improved user-driven analysis efficiency by 25%.",
-    tech: ["Power BI", "Demand Forecasting", "DAX"],
-    link: "https://github.com/KajalGupta-tech"
-  },
-  {
-    title: "Amazon Product Web Scraper",
-    desc: "Python + BeautifulSoup scraper extracting product prices, ratings, and reviews from Amazon to power market trend and competitive pricing analysis.",
-    tech: ["Python", "BeautifulSoup", "Web Scraping"],
+    title: "Logistics & Supply Chain Analytics",
+    desc: "End-to-end logistics performance dashboard tracking shipment volumes, delivery times, route efficiency, and warehouse throughput to surface bottlenecks across the supply chain.",
+    tech: ["Power BI", "SQL", "Excel", "Process Analysis"],
     link: "https://github.com/KajalGupta-tech"
   }
 ];
