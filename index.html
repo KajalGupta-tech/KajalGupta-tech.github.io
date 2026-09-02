@@ -6,751 +6,397 @@
 <title>Kajal Gupta — Data Analyst</title>
 <meta name="description" content="Kajal Gupta — Data Analyst. SQL, Python, Power BI, Machine Learning & BI Dashboards." />
 
-<!-- Fonts: Space Grotesk (display) + Inter (body/UI) + JetBrains Mono (data/code accents) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-<!-- Tailwind (utility layer only — visual system defined below in custom CSS) -->
-<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --bg: #0B0F19;
-    --bg-elevated: #0E1420;
-    --surface: #121a2b;
-    --surface-2: #0f1626;
-    --border: rgba(148,163,184,0.14);
-    --border-strong: rgba(148,163,184,0.28);
-    --primary: #6366F1;
-    --primary-2: #3B82F6;
-    --accent-purple: #A855F7;
-    --accent-cyan: #22D3EE;
-    --text: #F4F6FB;
-    --muted: #9AA6BF;
-    --muted-2: #6B7690;
+    --mint: #C6E6E3;      /* soft teal — primary accent */
+    --mist: #F0F9F8;      /* near-white mint — background */
+    --paper: #FFFFFF;     /* card surface */
+    --ink: #16302C;       /* deep teal-charcoal — headings/body */
+    --ink-soft: #4A6560;  /* muted body text */
+    --ink-faint: #7C9691; /* faint labels */
+    --teal-deep: #2F6E64; /* darker derived teal — links, buttons text on mint */
+    --line: #D7ECE9;      /* hairline border, one step off mist */
   }
 
   *{ box-sizing: border-box; }
   html{ scroll-behavior: smooth; }
   body{
-    background: var(--bg);
-    color: var(--text);
+    margin:0;
+    background: var(--mist);
+    color: var(--ink);
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
   }
-  .font-display{ font-family: 'Space Grotesk', sans-serif; }
-  .font-mono{ font-family: 'JetBrains Mono', monospace; }
+  .display{ font-family: 'Fraunces', serif; }
+  h1,h2,h3{ font-family: 'Fraunces', serif; font-weight: 600; margin:0; letter-spacing: -0.01em; }
+  p{ margin:0; }
+  a{ color: inherit; text-decoration: none; }
 
-  /* ---------- Ambient background: grid + glow orbs ---------- */
-  .bg-grid{
-    position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background-image:
-      linear-gradient(rgba(148,163,184,0.055) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(148,163,184,0.055) 1px, transparent 1px);
-    background-size: 56px 56px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
-  }
-  .orb{
-    position: fixed; z-index: 0; border-radius: 50%; filter: blur(110px); pointer-events: none;
-    opacity: 0.35;
-  }
-  .orb-1{ width: 520px; height: 520px; background: var(--primary); top: -180px; left: -120px; }
-  .orb-2{ width: 480px; height: 480px; background: var(--accent-purple); top: 220px; right: -160px; opacity: 0.22; }
-  .orb-3{ width: 420px; height: 420px; background: var(--accent-cyan); bottom: -160px; left: 30%; opacity: 0.14; }
-
-  section, header, footer{ position: relative; z-index: 1; }
-
-  /* ---------- Glass surfaces ---------- */
-  .glass{
-    background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.01));
-    border: 1px solid var(--border);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-  }
-  .glass-hover{ transition: border-color .35s ease, transform .35s ease, background .35s ease; }
-  .glass-hover:hover{
-    border-color: var(--border-strong);
-    transform: translateY(-4px);
-  }
-
-  /* ---------- Gradient text / accents ---------- */
-  .grad-text{
-    background: linear-gradient(100deg, var(--primary-2) 0%, var(--primary) 45%, var(--accent-purple) 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .grad-line{
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
-  }
+  .wrap{ max-width: 920px; margin: 0 auto; padding: 0 28px; }
 
   /* ---------- Nav ---------- */
-  #navbar{
-    background: rgba(11,15,25,0.65);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
+  header{
+    position: sticky; top:0; z-index: 40;
+    background: rgba(240,249,248,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
   }
-  .nav-link{ position: relative; color: var(--muted); transition: color .25s ease; }
-  .nav-link::after{
-    content:''; position:absolute; left:0; bottom:-4px; width:0; height:1px;
-    background: var(--primary-2); transition: width .25s ease;
+  nav{ display:flex; align-items:center; justify-content:space-between; padding: 18px 0; }
+  .brand{ font-family:'Fraunces', serif; font-weight:600; font-size: 1.1rem; }
+  .nav-links{ display:flex; gap: 28px; font-size: 0.92rem; color: var(--ink-soft); }
+  .nav-links a{ transition: color .2s ease; }
+  .nav-links a:hover{ color: var(--teal-deep); }
+  .nav-cta{
+    background: var(--ink); color: var(--mist);
+    padding: 9px 18px; border-radius: 3px; font-size: 0.85rem; font-weight:500;
+    transition: background .2s ease, transform .2s ease;
   }
-  .nav-link:hover{ color: var(--text); }
-  .nav-link:hover::after{ width: 100%; }
+  .nav-cta:hover{ background: var(--teal-deep); transform: translateY(-1px); }
+  #menu-btn{ display:none; background:none; border:1px solid var(--line); border-radius:4px; width:38px; height:38px; }
+  #mobile-menu{ display:none; flex-direction:column; gap:14px; padding: 14px 0 20px; border-top:1px solid var(--line); }
+  #mobile-menu.open{ display:flex; }
 
-  #scroll-progress{
-    position: fixed; top:0; left:0; height: 2px; z-index: 60;
-    background: linear-gradient(90deg, var(--accent-cyan), var(--primary), var(--accent-purple));
-    width: 0%;
-    transition: width .1s linear;
-  }
-
-  /* ---------- Buttons ---------- */
-  .btn-primary{
-    background: linear-gradient(135deg, var(--primary-2), var(--primary));
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset, 0 8px 30px -8px rgba(99,102,241,0.55);
-    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
-  }
-  .btn-primary:hover{ transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset, 0 14px 34px -10px rgba(99,102,241,0.7); }
-  .btn-ghost{
-    border: 1px solid var(--border-strong);
-    transition: border-color .25s ease, background .25s ease, transform .25s ease;
-  }
-  .btn-ghost:hover{ background: rgba(255,255,255,0.04); border-color: rgba(148,163,184,0.5); transform: translateY(-2px); }
-
-  /* ---------- Reveal on scroll ---------- */
-  .reveal{ opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-  .reveal.is-visible{ opacity: 1; transform: translateY(0); }
-
-  /* ---------- Section eyebrow ---------- */
-  .eyebrow{
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    color: var(--accent-cyan);
-  }
-  .eyebrow::before{ content: '// '; color: var(--muted-2); }
-
-  /* ---------- Hero terminal (signature element) ---------- */
-  .terminal{
-    background: linear-gradient(180deg, #0d1322, #0a0f1a);
-    border: 1px solid var(--border-strong);
-    border-radius: 14px;
-    box-shadow: 0 30px 70px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(99,102,241,0.06);
-    overflow: hidden;
-  }
-  .terminal-bar{
-    background: rgba(255,255,255,0.02);
-    border-bottom: 1px solid var(--border);
-  }
-  .dot{ width: 10px; height: 10px; border-radius: 50%; }
-  .cursor{
-    display:inline-block; width: 7px; height: 1.05em; background: var(--accent-cyan);
-    vertical-align: text-bottom; margin-left: 2px;
-    animation: blink 1s steps(1) infinite;
-  }
-  @keyframes blink{ 50%{ opacity: 0; } }
-
-  .bar-rise{ transform-origin: bottom; animation: rise 1.1s cubic-bezier(.2,.8,.2,1) both; }
-  @keyframes rise{ from{ transform: scaleY(0); opacity: 0;} to{ transform: scaleY(1); opacity: 1; } }
-
-  /* ---------- Typing tagline ---------- */
-  #typed-cursor{
-    display:inline-block; width: 3px; margin-left: 3px; background: var(--accent-cyan);
-    animation: blink .9s steps(1) infinite;
+  @media (max-width: 760px){
+    .nav-links, .nav-cta{ display:none; }
+    #menu-btn{ display:block; }
   }
 
-  /* ---------- Skill bars ---------- */
-  .skill-bar-track{ background: rgba(148,163,184,0.12); border-radius: 999px; overflow: hidden; }
-  .skill-bar-fill{
-    height: 100%; border-radius: 999px; width: 0%;
-    background: linear-gradient(90deg, var(--primary-2), var(--accent-purple));
-    transition: width 1.1s cubic-bezier(.2,.8,.2,1);
+  /* ---------- Hero ---------- */
+  .hero{ padding: 96px 0 70px; }
+  .kicker{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size: 0.82rem; color: var(--teal-deep); font-weight: 500;
+    background: var(--mint); padding: 6px 14px; border-radius: 999px; margin-bottom: 26px;
+  }
+  .kicker .dot{ width:6px; height:6px; border-radius:50%; background: var(--teal-deep); }
+  .hero h1{ font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.08; max-width: 760px; }
+  .hero-sub{ font-size: 1.08rem; color: var(--ink-soft); max-width: 560px; margin-top: 24px; line-height: 1.65; }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap: 14px; margin-top: 34px; }
+  .btn{
+    padding: 13px 26px; border-radius: 3px; font-size: 0.92rem; font-weight: 500;
+    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-solid{ background: var(--ink); color: var(--mist); }
+  .btn-solid:hover{ background: var(--teal-deep); transform: translateY(-2px); }
+  .btn-outline{ border: 1px solid var(--ink-faint); color: var(--ink); }
+  .btn-outline:hover{ border-color: var(--ink); background: var(--paper); transform: translateY(-2px); }
+
+  .hero-strip{
+    margin-top: 60px; padding-top: 28px; border-top: 1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap: 10px 30px; font-size: 0.82rem; color: var(--ink-faint);
   }
 
-  .tool-chip{
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,0.02);
-    transition: all .25s ease;
-  }
-  .tool-chip:hover{
-    border-color: rgba(34,211,238,0.45);
-    background: rgba(34,211,238,0.06);
-    transform: translateY(-2px);
-  }
+  /* ---------- Section shell ---------- */
+  section{ padding: 70px 0; border-top: 1px solid var(--line); }
+  .label{ font-size: 0.82rem; color: var(--teal-deep); font-weight: 600; margin-bottom: 10px; }
+  section h2{ font-size: clamp(1.7rem, 3vw, 2.2rem); margin-bottom: 40px; max-width: 600px; }
 
-  /* ---------- Project cards ---------- */
-  .project-card{
-    transition: transform .4s cubic-bezier(.2,.8,.2,1), border-color .4s ease, box-shadow .4s ease;
-  }
-  .project-card:hover{
-    transform: translateY(-6px);
-    border-color: rgba(99,102,241,0.5);
-    box-shadow: 0 24px 60px -24px rgba(99,102,241,0.35);
-  }
-  .project-card .glow{
-    opacity: 0; transition: opacity .4s ease;
-    background: radial-gradient(300px circle at var(--mx,50%) var(--my,0%), rgba(99,102,241,0.14), transparent 60%);
-  }
-  .project-card:hover .glow{ opacity: 1; }
+  /* ---------- About ---------- */
+  .about-grid{ display:grid; grid-template-columns: 1.4fr 1fr; gap: 56px; }
+  .about-grid p{ color: var(--ink-soft); line-height: 1.75; margin-bottom: 18px; font-size: 0.98rem; }
+  .about-grid p .hl{ color: var(--ink); font-weight: 500; }
+  .fact-card{ background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 26px; height: fit-content; }
+  .fact-row{ display:flex; justify-content:space-between; padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 0.9rem; }
+  .fact-row:last-child{ border-bottom:none; padding-bottom:0; }
+  .fact-row span:first-child{ color: var(--ink-faint); }
+  .fact-row span:last-child{ text-align:right; font-weight: 500; }
 
-  /* ---------- Timeline ---------- */
-  .timeline-line{
-    background: linear-gradient(180deg, var(--primary), var(--accent-purple), transparent);
-    width: 2px;
-  }
-  .timeline-dot{
-    box-shadow: 0 0 0 4px rgba(99,102,241,0.15), 0 0 20px rgba(99,102,241,0.6);
-  }
+  @media (max-width: 760px){ .about-grid{ grid-template-columns: 1fr; } }
 
-  ::selection{ background: rgba(99,102,241,0.35); color: #fff; }
-
-  ::-webkit-scrollbar{ width: 10px; }
-  ::-webkit-scrollbar-track{ background: var(--bg); }
-  ::-webkit-scrollbar-thumb{ background: #1c2437; border-radius: 8px; }
-  ::-webkit-scrollbar-thumb:hover{ background: #262f47; }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  /* ---------- Skills ---------- */
+  .skill-block{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .skill-block h3{ font-size: 0.95rem; font-weight: 600; margin-bottom: 16px; color: var(--teal-deep); }
+  .skill-block ul{ list-style:none; margin:0; padding:0; }
+  .skill-block li{
+    font-size: 0.9rem; color: var(--ink-soft); padding: 8px 0;
+    border-bottom: 1px solid var(--line);
   }
+  .skill-block li:last-child{ border-bottom: none; }
+  @media (max-width: 760px){ .skill-block{ grid-template-columns: 1fr; gap: 30px; } }
 
-  a:focus-visible, button:focus-visible{
-    outline: 2px solid var(--accent-cyan); outline-offset: 3px; border-radius: 4px;
+  /* ---------- Projects ---------- */
+  .project{
+    display:grid; grid-template-columns: 90px 1fr; gap: 24px;
+    padding: 30px 0; border-bottom: 1px solid var(--line);
   }
+  .project:last-child{ border-bottom: none; }
+  .project-num{ font-family:'Fraunces', serif; font-size: 1.6rem; color: var(--mint); font-weight:600; }
+  .project h3{ font-size: 1.15rem; margin-bottom: 10px; }
+  .project p{ color: var(--ink-soft); font-size: 0.93rem; line-height: 1.65; margin-bottom: 14px; max-width: 620px; }
+  .tech-row{ display:flex; flex-wrap:wrap; gap: 8px; margin-bottom: 14px; }
+  .tech-tag{ font-size: 0.76rem; padding: 4px 10px; background: var(--mint); color: var(--teal-deep); border-radius: 999px; font-weight:500; }
+  .project-link{ font-size: 0.88rem; color: var(--teal-deep); font-weight:500; display:inline-flex; align-items:center; gap:6px; }
+  .project-link:hover{ text-decoration: underline; }
+  .more-repos{ margin-top: 36px; }
+
+  /* ---------- Journey ---------- */
+  .timeline{ position:relative; padding-left: 28px; }
+  .timeline::before{ content:''; position:absolute; left:4px; top:6px; bottom:6px; width:1px; background: var(--line); }
+  .t-item{ position:relative; padding-bottom: 34px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:''; position:absolute; left: -28px; top: 4px; width:9px; height:9px; border-radius:50%;
+    background: var(--mint); border: 2px solid var(--teal-deep);
+  }
+  .t-date{ font-size: 0.78rem; color: var(--ink-faint); margin-bottom: 4px; }
+  .t-item h3{ font-size: 1.02rem; margin-bottom: 6px; }
+  .t-item p{ color: var(--ink-soft); font-size: 0.9rem; line-height: 1.6; }
+
+  /* ---------- Contact ---------- */
+  .contact-wrap{ text-align:left; }
+  .contact-wrap h2{ max-width: 520px; }
+  .contact-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 30px; }
+  .contact-card{
+    background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 22px;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .contact-card:hover{ border-color: var(--teal-deep); transform: translateY(-3px); }
+  .contact-card .c-label{ font-size: 0.76rem; color: var(--ink-faint); margin-bottom: 6px; }
+  .contact-card .c-value{ font-size: 0.92rem; font-weight: 500; word-break: break-word; }
+  @media (max-width: 700px){ .contact-grid{ grid-template-columns: 1fr; } }
+
+  footer{ padding: 30px 0 50px; border-top: 1px solid var(--line); }
+  .footer-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap: 12px; font-size: 0.8rem; color: var(--ink-faint); }
+
+  .reveal{ opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.is-visible{ opacity:1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){ *{ transition: none !important; } }
+  a:focus-visible, button:focus-visible{ outline: 2px solid var(--teal-deep); outline-offset: 3px; }
 </style>
 </head>
+<body>
 
-<body class="antialiased">
-
-<div id="scroll-progress"></div>
-<div class="bg-grid"></div>
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
-
-<!-- ============ NAV ============ -->
-<header id="navbar" class="fixed top-0 left-0 right-0 z-50">
-  <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="#home" class="font-display font-bold text-lg tracking-tight">
-      Kajal<span class="grad-text">.</span><span class="font-mono text-sm text-[var(--muted)] font-normal ml-1">data</span>
-    </a>
-
-    <div class="hidden md:flex items-center gap-8 font-mono text-sm">
-      <a href="#about" class="nav-link">01. About</a>
-      <a href="#skills" class="nav-link">02. Skills</a>
-      <a href="#projects" class="nav-link">03. Projects</a>
-      <a href="#journey" class="nav-link">04. Journey</a>
-      <a href="#contact" class="nav-link">05. Contact</a>
+<header>
+  <nav class="wrap">
+    <a href="#home" class="brand">Kajal Gupta</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#journey">Journey</a>
+      <a href="#contact">Contact</a>
     </div>
-
-    <div class="hidden md:flex items-center gap-3">
-      <a href="https://github.com/KajalGupta-tech" target="_blank" rel="noopener" class="btn-ghost rounded-lg px-4 py-2 text-sm font-medium flex items-center gap-2">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.78 10.78.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.05-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 2.86-.39c.97 0 1.94.13 2.86.39 2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.81 1.17 3.05 0 4.37-2.66 5.34-5.2 5.62.41.36.77 1.06.77 2.14 0 1.54-.01 2.79-.01 3.17 0 .3.2.66.79.55A11.02 11.02 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5z"/></svg>
-        GitHub
-      </a>
-    </div>
-
-    <button id="menu-btn" class="md:hidden w-9 h-9 grid place-items-center rounded-lg border border-[var(--border-strong)]" aria-label="Open menu">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
+    <a href="RESUME_LINK_HERE" target="_blank" rel="noopener" class="nav-cta">Resume</a>
+    <button id="menu-btn" aria-label="Open menu">☰</button>
   </nav>
-
-  <!-- mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden px-6 pb-5 font-mono text-sm flex flex-col gap-4 border-t border-[var(--border)]">
-    <a href="#about" class="nav-link py-1">01. About</a>
-    <a href="#skills" class="nav-link py-1">02. Skills</a>
-    <a href="#projects" class="nav-link py-1">03. Projects</a>
-    <a href="#journey" class="nav-link py-1">04. Journey</a>
-    <a href="#contact" class="nav-link py-1">05. Contact</a>
-    <a href="https://github.com/KajalGupta-tech" target="_blank" rel="noopener" class="btn-ghost rounded-lg px-4 py-2 text-center mt-1">GitHub Profile</a>
+  <div id="mobile-menu" class="wrap">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#journey">Journey</a>
+    <a href="#contact">Contact</a>
+    <a href="RESUME_LINK_HERE" target="_blank" rel="noopener">Resume ↗</a>
   </div>
 </header>
 
-<!-- ============ HERO ============ -->
-<section id="home" class="min-h-screen flex items-center pt-28 pb-20 px-6">
-  <div class="max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_1fr] gap-14 items-center w-full">
-
-    <!-- left -->
-    <div>
-      <div class="reveal flex items-center gap-3 mb-6">
-        <span class="w-2 h-2 rounded-full bg-[var(--accent-cyan)] animate-pulse"></span>
-        <span class="eyebrow">open to data analyst / ML roles</span>
-      </div>
-
-      <h1 class="reveal font-display font-bold leading-[1.05] text-4xl sm:text-5xl lg:text-6xl mb-6">
-        Kajal Gupta —<br/>
-        <span class="grad-text">turning raw data</span><br/>
-        into decisions.
-      </h1>
-
-      <p class="reveal text-lg text-[var(--muted)] mb-2 h-8 font-mono">
-        <span id="typed-text"></span><span id="typed-cursor">&nbsp;</span>
-      </p>
-
-      <p class="reveal text-[var(--muted)] max-w-xl mb-9 leading-relaxed">
-        B.Sc. Computer Science graduate from University of Delhi, building predictive models,
-        BI dashboards, and clean data pipelines with Python, SQL, and Power BI — with an eye for
-        the story hiding inside the numbers.
-      </p>
-
-      <div class="reveal flex flex-wrap items-center gap-4">
-        <a href="#projects" class="btn-primary rounded-lg px-6 py-3 font-semibold text-white text-sm">View Projects →</a>
-        <a href="https://github.com/KajalGupta-tech" target="_blank" rel="noopener" class="btn-ghost rounded-lg px-6 py-3 font-semibold text-sm flex items-center gap-2">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.78 10.78.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.05-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 2.86-.39c.97 0 1.94.13 2.86.39 2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.81 1.17 3.05 0 4.37-2.66 5.34-5.2 5.62.41.36.77 1.06.77 2.14 0 1.54-.01 2.79-.01 3.17 0 .3.2.66.79.55A11.02 11.02 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5z"/></svg>
-          GitHub Profile
-        </a>
-      </div>
-
-      <div class="reveal grad-line mt-12 mb-6"></div>
-      <div class="reveal flex flex-wrap gap-x-10 gap-y-4 font-mono text-xs text-[var(--muted-2)]">
-        <span>SQL</span><span>Python</span><span>Power BI</span><span>Excel</span><span>Scikit-learn</span><span>ETL</span>
-      </div>
+<section id="home" class="hero">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="dot"></span>Open to Data Analyst &amp; ML roles</div>
+    <h1 class="reveal">Turning raw data into decisions people can act on.</h1>
+    <p class="hero-sub reveal">B.Sc. Computer Science graduate from the University of Delhi. I clean messy datasets, build predictive models, and ship dashboards — with SQL, Python, and Power BI as my daily tools.</p>
+    <div class="hero-actions reveal">
+      <a href="#projects" class="btn btn-solid">View projects</a>
+      <a href="https://github.com/KajalGupta-tech" target="_blank" rel="noopener" class="btn btn-outline">GitHub profile</a>
+      <a href="RESUME_LINK_HERE" target="_blank" rel="noopener" class="btn btn-outline">Download resume</a>
     </div>
-
-    <!-- right: signature terminal element -->
-    <div class="reveal">
-      <div class="terminal">
-        <div class="terminal-bar flex items-center gap-2 px-4 py-3">
-          <span class="dot" style="background:#ff5f57"></span>
-          <span class="dot" style="background:#febc2e"></span>
-          <span class="dot" style="background:#28c840"></span>
-          <span class="font-mono text-xs text-[var(--muted-2)] ml-2">fraud_detection.sql</span>
-        </div>
-        <div class="p-5 font-mono text-[13px] leading-relaxed">
-          <div id="sql-typed" class="text-[var(--muted)] whitespace-pre-wrap min-h-[92px]"></div>
-          <div id="chart-block" class="mt-5 opacity-0 transition-opacity duration-700">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-[var(--accent-cyan)] text-xs"># model_accuracy.png</span>
-              <span class="text-[var(--muted-2)] text-xs">F1: 0.94</span>
-            </div>
-            <div class="flex items-end gap-2 h-24">
-              <div class="bar-rise flex-1 rounded-t" style="height:55%; background:linear-gradient(180deg,#6366F1,#3B82F6); animation-delay:.05s"></div>
-              <div class="bar-rise flex-1 rounded-t" style="height:78%; background:linear-gradient(180deg,#818cf8,#6366F1); animation-delay:.15s"></div>
-              <div class="bar-rise flex-1 rounded-t" style="height:40%; background:linear-gradient(180deg,#a855f7,#6366F1); animation-delay:.25s"></div>
-              <div class="bar-rise flex-1 rounded-t" style="height:94%; background:linear-gradient(180deg,#22d3ee,#3B82F6); animation-delay:.35s"></div>
-              <div class="bar-rise flex-1 rounded-t" style="height:66%; background:linear-gradient(180deg,#6366F1,#a855f7); animation-delay:.45s"></div>
-              <div class="bar-rise flex-1 rounded-t" style="height:85%; background:linear-gradient(180deg,#3B82F6,#22d3ee); animation-delay:.55s"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="hero-strip reveal">
+      <span>SQL</span><span>Python</span><span>Power BI</span><span>Microsoft Fabric</span><span>Scikit-learn</span><span>Excel</span>
     </div>
-
   </div>
 </section>
 
-<!-- ============ ABOUT ============ -->
-<section id="about" class="py-28 px-6 border-t border-[var(--border)]">
-  <div class="max-w-6xl mx-auto">
-    <p class="eyebrow reveal mb-3">about</p>
-    <h2 class="reveal font-display font-bold text-3xl sm:text-4xl mb-14">The person behind the pipelines</h2>
-
-    <div class="grid lg:grid-cols-[1.3fr_1fr] gap-12">
-      <div class="reveal space-y-5 text-[var(--muted)] leading-relaxed text-[15px]">
-        <p>
-          I'm a data analyst who likes messy datasets — the kind with nulls, duplicates, and outliers
-          that most people avoid. That's usually where the real story starts. I studied
-          <span class="text-[var(--text)]">Computer Science (Honours) at the University of Delhi</span>,
-          and along the way built a habit of asking "so what does this number actually mean for
-          the business?" before touching a single chart.
-        </p>
-        <p>
-          My work sits at the intersection of <span class="text-[var(--text)]">statistics, engineering,
-          and storytelling</span> — cleaning and modeling data in Python, querying it in SQL, and
-          shipping the insight as a dashboard someone will actually open on a Monday morning.
-        </p>
-        <p>
-          Recently I completed a virtual internship with <span class="text-[var(--text)]">Deloitte Australia
-          (via Forage)</span>, applying data visualization and modeling skills to real business scenarios —
-          and I'm now looking for a full-time seat at that table.
-        </p>
+<section id="about">
+  <div class="wrap">
+    <p class="label reveal">About</p>
+    <h2 class="reveal">The person behind the pipelines</h2>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>I'm a data analyst who likes messy datasets — the kind with nulls, duplicates, and outliers that most people avoid. That's usually where the real story starts. I studied <span class="hl">Computer Science (Honours) at the University of Delhi</span>, and along the way built the habit of asking what a number actually means for the business before touching a chart.</p>
+        <p>My work sits at the intersection of statistics, engineering, and storytelling — cleaning and modeling data in Python, querying it in SQL, and shipping the insight as a dashboard someone will actually open on a Monday morning.</p>
+        <p>I recently completed a virtual internship with <span class="hl">Deloitte Australia (via Forage)</span>, applying data visualization and modeling skills to real business scenarios — and I'm now looking for a full-time seat at that table.</p>
       </div>
-
-      <div class="reveal glass rounded-2xl p-7 space-y-5">
-        <div class="flex justify-between items-center pb-4 border-b border-[var(--border)]">
-          <span class="font-mono text-xs text-[var(--muted-2)]">Location</span>
-          <span class="text-sm">New Delhi, India</span>
-        </div>
-        <div class="flex justify-between items-center pb-4 border-b border-[var(--border)]">
-          <span class="font-mono text-xs text-[var(--muted-2)]">Education</span>
-          <span class="text-sm text-right">B.Sc. CS (Hons), DU</span>
-        </div>
-        <div class="flex justify-between items-center pb-4 border-b border-[var(--border)]">
-          <span class="font-mono text-xs text-[var(--muted-2)]">Focus</span>
-          <span class="text-sm text-right">Analytics · ML · BI</span>
-        </div>
-        <div class="flex justify-between items-center">
-          <span class="font-mono text-xs text-[var(--muted-2)]">Status</span>
-          <span class="text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-cyan)]"></span>Open to work</span>
-        </div>
+      <div class="fact-card reveal">
+        <div class="fact-row"><span>Location</span><span>New Delhi, India</span></div>
+        <div class="fact-row"><span>Education</span><span>B.Sc. CS (Hons), DU</span></div>
+        <div class="fact-row"><span>Focus</span><span>Analytics · ML · BI</span></div>
+        <div class="fact-row"><span>Status</span><span>Open to work</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ SKILLS ============ -->
-<section id="skills" class="py-28 px-6 border-t border-[var(--border)]">
-  <div class="max-w-6xl mx-auto">
-    <p class="eyebrow reveal mb-3">skills</p>
-    <h2 class="reveal font-display font-bold text-3xl sm:text-4xl mb-4">What I build with</h2>
-    <p class="reveal text-[var(--muted)] max-w-2xl mb-14">Core tools I use daily, plus the wider stack I reach for when a project needs more — from cloud storage to automated pipelines.</p>
-
-    <!-- Core skills - progress bars -->
-    <div class="grid sm:grid-cols-2 gap-x-12 gap-y-8 mb-16">
-      <div class="reveal skill-item" data-level="90">
-        <div class="flex justify-between mb-2 font-mono text-sm"><span>SQL</span><span class="text-[var(--muted-2)]">Advanced</span></div>
-        <div class="skill-bar-track h-2"><div class="skill-bar-fill"></div></div>
+<section id="skills">
+  <div class="wrap">
+    <p class="label reveal">Skills</p>
+    <h2 class="reveal">What I build with</h2>
+    <div class="skill-block">
+      <div class="reveal">
+        <h3>Core</h3>
+        <ul>
+          <li>SQL</li><li>Python (Pandas, NumPy)</li><li>Power BI &amp; DAX</li><li>Advanced Excel</li>
+        </ul>
       </div>
-      <div class="reveal skill-item" data-level="88">
-        <div class="flex justify-between mb-2 font-mono text-sm"><span>Python</span><span class="text-[var(--muted-2)]">Advanced</span></div>
-        <div class="skill-bar-track h-2"><div class="skill-bar-fill"></div></div>
+      <div class="reveal">
+        <h3>Data &amp; ML</h3>
+        <ul>
+          <li>Scikit-learn</li><li>Matplotlib / Seaborn</li><li>Data cleaning &amp; EDA</li><li>Jupyter</li>
+        </ul>
       </div>
-      <div class="reveal skill-item" data-level="85">
-        <div class="flex justify-between mb-2 font-mono text-sm"><span>Power BI</span><span class="text-[var(--muted-2)]">Advanced</span></div>
-        <div class="skill-bar-track h-2"><div class="skill-bar-fill"></div></div>
-      </div>
-      <div class="reveal skill-item" data-level="82">
-        <div class="flex justify-between mb-2 font-mono text-sm"><span>Excel</span><span class="text-[var(--muted-2)]">Advanced</span></div>
-        <div class="skill-bar-track h-2"><div class="skill-bar-fill"></div></div>
-      </div>
-    </div>
-
-    <!-- Tool categories -->
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="reveal glass rounded-2xl p-6">
-        <h3 class="font-display font-semibold mb-4 flex items-center gap-2 text-[var(--accent-cyan)]">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
-          Data & ML
-        </h3>
-        <div class="flex flex-wrap gap-2">
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Pandas</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">NumPy</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Matplotlib</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Seaborn</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Scikit-learn</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Data Cleaning</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Data Visualization</span>
-        </div>
-      </div>
-
-      <div class="reveal glass rounded-2xl p-6">
-        <h3 class="font-display font-semibold mb-4 flex items-center gap-2 text-[var(--primary-2)]">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
-          Engineering & Cloud
-        </h3>
-        <div class="flex flex-wrap gap-2">
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">ETL Pipelines</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Data Warehousing</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">DBT</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Docker</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">AWS</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Azure</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">MySQL</span>
-        </div>
-      </div>
-
-      <div class="reveal glass rounded-2xl p-6">
-        <h3 class="font-display font-semibold mb-4 flex items-center gap-2 text-[var(--accent-purple)]">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-          Workflow & APIs
-        </h3>
-        <div class="flex flex-wrap gap-2">
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Git & GitHub</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">APIs</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Automation</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Web Scraping</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Tableau</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Google Analytics</span>
-          <span class="tool-chip rounded-lg px-3 py-1.5 text-xs font-mono">Jupyter</span>
-        </div>
+      <div class="reveal">
+        <h3>Engineering &amp; tools</h3>
+        <ul>
+          <li>Microsoft Fabric</li><li>MySQL</li><li>Tableau</li><li>Git &amp; GitHub</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ PROJECTS ============ -->
-<section id="projects" class="py-28 px-6 border-t border-[var(--border)]">
-  <div class="max-w-6xl mx-auto">
-    <div class="flex flex-wrap justify-between items-end gap-4 mb-14">
+<section id="projects">
+  <div class="wrap">
+    <p class="label reveal">Projects</p>
+    <h2 class="reveal">Selected work</h2>
+
+    <div class="project reveal">
+      <div class="project-num">01</div>
       <div>
-        <p class="eyebrow reveal mb-3">projects</p>
-        <h2 class="reveal font-display font-bold text-3xl sm:text-4xl">Selected work</h2>
+        <h3>Swiggy End-to-End Data Pipeline</h3>
+        <p>Engineered a full pipeline for 190K+ food-delivery records into a Fabric Lakehouse → Delta tables → Fabric Warehouse, with a normalized star schema (1 fact + 4 dimension tables) and PK/FK constraints.</p>
+        <div class="tech-row"><span class="tech-tag">Microsoft Fabric</span><span class="tech-tag">SQL Server</span><span class="tech-tag">Power BI</span></div>
+        <a href="https://github.com/KajalGupta-tech/swiggy-delivery-analytics" target="_blank" rel="noopener" class="project-link">View repository ↗</a>
       </div>
-      <p id="repo-status" class="reveal font-mono text-xs text-[var(--muted-2)]">loading github activity…</p>
     </div>
 
-    <div id="project-grid" class="grid md:grid-cols-2 gap-6">
-      <!-- project cards injected by JS (with static fallback data) -->
+    <div class="project reveal">
+      <div class="project-num">02</div>
+      <div>
+        <h3>Logistics Fleet &amp; Operations Dashboard</h3>
+        <p>A 4-page Power BI dashboard tracking hub capacity, driver performance, and vehicle health, with dynamic DAX measures and a parameter-driven KPI switch.</p>
+        <div class="tech-row"><span class="tech-tag">Power BI</span><span class="tech-tag">DAX</span></div>
+        <a href="https://github.com/KajalGupta-tech/logistics-supply-chain-analytics" target="_blank" rel="noopener" class="project-link">View repository ↗</a>
+      </div>
     </div>
 
-    <div class="reveal text-center mt-14">
-      <a href="https://github.com/KajalGupta-tech?tab=repositories" target="_blank" rel="noopener" class="btn-ghost inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-medium">
-        See all repositories on GitHub
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    <div class="project reveal">
+      <div class="project-num">03</div>
+      <div>
+        <h3>Fraud Detection — Predictive Analytics</h3>
+        <p>End-to-end classification pipeline (Logistic Regression, Random Forest) with EDA and F1-score evaluation on transaction data.</p>
+        <div class="tech-row"><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span><span class="tech-tag">Scikit-learn</span></div>
+        <a href="FRAUD_REPO_LINK_HERE" target="_blank" rel="noopener" class="project-link">View repository ↗</a>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-num">04</div>
+      <div>
+        <h3>Spotify Music Streaming Analytics</h3>
+        <p>Power BI dashboard with advanced DAX, quadrant analysis, and drill-through exploration of listening trends across 150K+ records.</p>
+        <div class="tech-row"><span class="tech-tag">Power BI</span><span class="tech-tag">DAX</span></div>
+        <a href="https://github.com/KajalGupta-tech/spotify-listening-analytics" target="_blank" rel="noopener" class="project-link">View repository ↗</a>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-num">05</div>
+      <div>
+        <h3>Amazon Product Web Scraper</h3>
+        <p>Scrapes prices, ratings, and reviews for competitive pricing analysis.</p>
+        <div class="tech-row"><span class="tech-tag">Python</span><span class="tech-tag">BeautifulSoup</span></div>
+        <a href="SCRAPER_REPO_LINK_HERE" target="_blank" rel="noopener" class="project-link">View repository ↗</a>
+      </div>
+    </div>
+
+    <div class="more-repos reveal">
+      <a href="https://github.com/KajalGupta-tech?tab=repositories" target="_blank" rel="noopener" class="btn btn-outline">See all repositories on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="wrap">
+    <p class="label reveal">Experience &amp; learning</p>
+    <h2 class="reveal">The journey so far</h2>
+    <div class="timeline">
+      <div class="t-item reveal">
+        <div class="t-date">JULY 2026</div>
+        <h3>Data Analytics Virtual Internship — Deloitte Australia</h3>
+        <p>Completed via Forage, applying data visualization, analysis, modeling, and spreadsheet skills to real-world business scenarios.</p>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-date">2025</div>
+        <h3>Swiggy, Spotify &amp; Logistics Analytics Dashboards</h3>
+        <p>Built end-to-end BI dashboards and data pipelines across food delivery, music streaming, and logistics domains — see Projects above.</p>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-date">2024</div>
+        <h3>Early data analytics projects</h3>
+        <p>Built first end-to-end dashboards and Python data-cleaning pipelines, laying the groundwork for the current portfolio.</p>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-date">2022 – 2026</div>
+        <h3>B.Sc. Computer Science (Honours), University of Delhi</h3>
+        <p>Deen Dayal Upadhyaya College · CGPA 7.73 (Sem I–VI), SGPA 8.0 (Sem VII).</p>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-date">CERTIFICATIONS</div>
+        <h3>Continuous learning</h3>
+        <p>Alex's Data Analyst Bootcamp · Power BI for Beginners (Simplilearn) · Advanced Diploma in Computer Application (ADCA).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-wrap">
+    <p class="label reveal">Let's connect</p>
+    <h2 class="reveal">Got a role or a dataset worth exploring?</h2>
+    <p class="reveal" style="color:var(--ink-soft); max-width:520px; margin-top:14px; line-height:1.6;">I'm actively looking for entry-level opportunities in data analytics, machine learning, or IT. Reach out — I reply fast.</p>
+    <div class="contact-grid reveal">
+      <a href="mailto:projects.kajalgupta@gmail.com" class="contact-card">
+        <div class="c-label">Email</div>
+        <div class="c-value">projects.kajalgupta@gmail.com</div>
+      </a>
+      <a href="https://linkedin.com/in/kajalgupta19" target="_blank" rel="noopener" class="contact-card">
+        <div class="c-label">LinkedIn</div>
+        <div class="c-value">/in/kajalgupta19</div>
+      </a>
+      <a href="https://github.com/KajalGupta-tech" target="_blank" rel="noopener" class="contact-card">
+        <div class="c-label">GitHub</div>
+        <div class="c-value">KajalGupta-tech</div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ============ JOURNEY / TIMELINE ============ -->
-<section id="journey" class="py-28 px-6 border-t border-[var(--border)]">
-  <div class="max-w-4xl mx-auto">
-    <p class="eyebrow reveal mb-3">experience & learning</p>
-    <h2 class="reveal font-display font-bold text-3xl sm:text-4xl mb-16">The journey so far</h2>
-
-    <div class="relative pl-10">
-      <div class="timeline-line absolute left-0 top-1 bottom-0"></div>
-
-      <div class="reveal relative mb-14">
-        <span class="timeline-dot absolute -left-[42px] top-1 w-3 h-3 rounded-full bg-[var(--primary-2)]"></span>
-        <p class="font-mono text-xs text-[var(--muted-2)] mb-1">JULY 2026</p>
-        <h3 class="font-display font-semibold text-lg mb-1">Data Analytics Virtual Internship — Deloitte Australia</h3>
-        <p class="text-[var(--muted)] text-sm leading-relaxed">Completed via Forage, applying data visualization, analysis, modeling and spreadsheet skills to real-world business scenarios.</p>
-      </div>
-
-      <div class="reveal relative mb-14">
-        <span class="timeline-dot absolute -left-[42px] top-1 w-3 h-3 rounded-full bg-[var(--accent-purple)]"></span>
-        <p class="font-mono text-xs text-[var(--muted-2)] mb-1">2025</p>
-        <h3 class="font-display font-semibold text-lg mb-1">Swiggy, Spotify & Logistics Analytics Dashboards</h3>
-        <p class="text-[var(--muted)] text-sm leading-relaxed">Built end-to-end BI dashboards and data pipelines across food delivery, music streaming, and logistics domains — see Projects above.</p>
-      </div>
-
-      <div class="reveal relative mb-14">
-        <span class="timeline-dot absolute -left-[42px] top-1 w-3 h-3 rounded-full bg-[var(--accent-cyan)]"></span>
-        <p class="font-mono text-xs text-[var(--muted-2)] mb-1">2024</p>
-        <h3 class="font-display font-semibold text-lg mb-1">Early Data Analytics Projects</h3>
-        <p class="text-[var(--muted)] text-sm leading-relaxed">Built first end-to-end dashboards and Python data-cleaning pipelines, laying the groundwork for the current project portfolio.</p>
-      </div>
-
-      <div class="reveal relative mb-14">
-        <span class="timeline-dot absolute -left-[42px] top-1 w-3 h-3 rounded-full bg-[var(--primary-2)]"></span>
-        <p class="font-mono text-xs text-[var(--muted-2)] mb-1">2022 – 2026</p>
-        <h3 class="font-display font-semibold text-lg mb-1">B.Sc. Computer Science (Honours), University of Delhi</h3>
-        <p class="text-[var(--muted)] text-sm leading-relaxed">Deen Dayal Upadhyaya College · CGPA 7.73 (Sem I–VI), SGPA 8.0 (Sem VII).</p>
-      </div>
-
-      <div class="reveal relative">
-        <span class="timeline-dot absolute -left-[42px] top-1 w-3 h-3 rounded-full bg-[var(--accent-purple)]"></span>
-        <p class="font-mono text-xs text-[var(--muted-2)] mb-1">CERTIFICATIONS</p>
-        <h3 class="font-display font-semibold text-lg mb-1">Continuous learning</h3>
-        <p class="text-[var(--muted)] text-sm leading-relaxed">Alex's Data Analyst Bootcamp · Power BI for Beginners (Simplilearn) · Advanced Diploma in Computer Application (ADCA).</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CONTACT ============ -->
-<section id="contact" class="py-28 px-6 border-t border-[var(--border)]">
-  <div class="max-w-4xl mx-auto text-center">
-    <p class="eyebrow reveal mb-3 justify-center flex">let's connect</p>
-    <h2 class="reveal font-display font-bold text-3xl sm:text-5xl mb-6">Got a role or a dataset<br/>worth exploring?</h2>
-    <p class="reveal text-[var(--muted)] max-w-xl mx-auto mb-12">I'm actively looking for entry-level opportunities in data analytics, machine learning, or IT. Reach out — I reply fast.</p>
-
-    <div class="reveal grid sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
-      <a href="mailto:projects.kajalgupta@gmail.com" class="glass glass-hover rounded-2xl p-6 flex flex-col items-center gap-3">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[var(--accent-cyan)]"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg>
-        <span class="font-mono text-xs text-[var(--muted-2)]">Email</span>
-        <span class="text-sm break-all">projects.kajalgupta@gmail.com</span>
-      </a>
-      <a href="https://linkedin.com/in/kajalgupta19" target="_blank" rel="noopener" class="glass glass-hover rounded-2xl p-6 flex flex-col items-center gap-3">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[var(--primary-2)]"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v5M8 8v.01M12 16v-5M12 11c0-1.5 1-2 2.2-2 1.4 0 1.8 1 1.8 2.3V16"/></svg>
-        <span class="font-mono text-xs text-[var(--muted-2)]">LinkedIn</span>
-        <span class="text-sm">/in/kajalgupta19</span>
-      </a>
-      <a href="https://github.com/KajalGupta-tech" target="_blank" rel="noopener" class="glass glass-hover rounded-2xl p-6 flex flex-col items-center gap-3">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="text-[var(--accent-purple)]"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.78 10.78.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.05-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 2.86-.39c.97 0 1.94.13 2.86.39 2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.81 1.17 3.05 0 4.37-2.66 5.34-5.2 5.62.41.36.77 1.06.77 2.14 0 1.54-.01 2.79-.01 3.17 0 .3.2.66.79.55A11.02 11.02 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5z"/></svg>
-        <span class="font-mono text-xs text-[var(--muted-2)]">GitHub</span>
-        <span class="text-sm">KajalGupta-tech</span>
-      </a>
-    </div>
-
-    <a href="tel:+918076034544" class="reveal inline-block mt-8 font-mono text-sm text-[var(--muted)] hover:text-[var(--text)] transition-colors">+91 8076034544</a>
-  </div>
-</section>
-
-<footer class="py-10 px-6 border-t border-[var(--border)]">
-  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 font-mono text-xs text-[var(--muted-2)]">
-    <span>© 2026 Kajal Gupta. Built with care, coffee, and a lot of dataframes.</span>
-    <button id="back-to-top" class="btn-ghost rounded-lg px-4 py-2 flex items-center gap-2">
-      Back to top
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-    </button>
+<footer>
+  <div class="wrap footer-row">
+    <span>© 2026 Kajal Gupta</span>
+    <button id="back-to-top" class="btn btn-outline" style="padding:8px 16px;">Back to top</button>
   </div>
 </footer>
 
 <script>
-/* ================= Scroll progress bar ================= */
-const progressBar = document.getElementById('scroll-progress');
-function updateProgress(){
-  const h = document.documentElement;
-  const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
-  progressBar.style.width = scrolled + '%';
-}
-document.addEventListener('scroll', updateProgress, { passive: true });
-
-/* ================= Mobile menu ================= */
-const menuBtn = document.getElementById('menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
-
-/* ================= Back to top ================= */
-document.getElementById('back-to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-/* ================= Reveal on scroll ================= */
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting){
-      setTimeout(() => entry.target.classList.add('is-visible'), i * 60);
-      revealObserver.unobserve(entry.target);
-    }
+  document.getElementById('menu-btn').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('open');
   });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  document.getElementById('back-to-top').addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
-/* ================= Skill bars fill on view ================= */
-const skillObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting){
-      const level = entry.target.getAttribute('data-level');
-      entry.target.querySelector('.skill-bar-fill').style.width = level + '%';
-      skillObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.4 });
-document.querySelectorAll('.skill-item').forEach(el => skillObserver.observe(el));
-
-/* ================= Hero typing tagline ================= */
-const taglines = ["Data Analyst.", "Data Storyteller.", "Insight Engineer.", "Dashboard Builder."];
-const typedEl = document.getElementById('typed-text');
-let tIndex = 0, cIndex = 0, deleting = false;
-
-function typeLoop(){
-  const current = taglines[tIndex];
-  if (!deleting){
-    cIndex++;
-    typedEl.textContent = current.slice(0, cIndex);
-    if (cIndex === current.length){ deleting = true; setTimeout(typeLoop, 1400); return; }
-  } else {
-    cIndex--;
-    typedEl.textContent = current.slice(0, cIndex);
-    if (cIndex === 0){ deleting = false; tIndex = (tIndex + 1) % taglines.length; }
-  }
-  setTimeout(typeLoop, deleting ? 35 : 65);
-}
-typeLoop();
-
-/* ================= Terminal SQL typing (signature element) ================= */
-const sqlLines = [
-"SELECT customer_id,",
-"       amount,",
-"       is_fraud",
-"FROM   transactions",
-"WHERE  risk_score > 0.8",
-"ORDER  BY amount DESC;",
-"",
-"-- 12,480 rows scanned",
-"-- model: RandomForest",
-"-- accuracy: 96.2%"
-];
-const sqlEl = document.getElementById('sql-typed');
-const chartBlock = document.getElementById('chart-block');
-
-async function typeSQL(){
-  for (const line of sqlLines){
-    let shown = '';
-    for (const ch of line){
-      shown += ch;
-      sqlEl.innerHTML = sqlEl.dataset.done ? sqlEl.dataset.done + shown : shown;
-      await new Promise(r => setTimeout(r, 16));
-    }
-    sqlEl.dataset.done = (sqlEl.dataset.done || '') + line + '\n';
-    sqlEl.innerHTML = sqlEl.dataset.done;
-    await new Promise(r => setTimeout(r, 90));
-  }
-  chartBlock.style.opacity = '1';
-}
-// start once terminal is in view
-const termObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting){ typeSQL(); termObserver.disconnect(); }
-  });
-}, { threshold: 0.3 });
-termObserver.observe(document.querySelector('.terminal'));
-
-/* ================= Projects: static fallback + optional GitHub fetch ================= */
-const fallbackProjects = [
-  {
-    title: "Swiggy Order & Delivery Analytics Dashboard",
-    desc: "Built a multi-page Power BI dashboard (hubs, drivers, vehicles) plus SQL/Python EDA on food-delivery data — covering on-time delivery rate, hub capacity utilization, driver performance, and delayed-order drivers.",
-    tech: ["Power BI", "SQL", "Python", "DAX"],
-    link: "https://github.com/KajalGupta-tech"
-  },
-  {
-    title: "Spotify Listening History Analytics",
-    desc: "Designed a 3-page Power BI report (overview, listening patterns, drill-through grid) analyzing 150K+ streaming records — with a dynamic quadrant analysis, hour-by-day heatmap, and YoY growth KPIs.",
-    tech: ["Power BI", "DAX", "Time Intelligence", "Data Modeling"],
-    link: "https://github.com/KajalGupta-tech"
-  },
-  {
-    title: "Logistics & Supply Chain Analytics",
-    desc: "End-to-end logistics performance dashboard tracking shipment volumes, delivery times, route efficiency, and warehouse throughput to surface bottlenecks across the supply chain.",
-    tech: ["Power BI", "SQL", "Excel", "Process Analysis"],
-    link: "https://github.com/KajalGupta-tech"
-  }
-];
-
-function projectCard(p){
-  return `
-  <div class="project-card reveal glass rounded-2xl p-7 relative overflow-hidden" data-tilt>
-    <div class="glow absolute inset-0 pointer-events-none"></div>
-    <div class="relative">
-      <div class="flex justify-between items-start mb-4">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="text-[var(--accent-cyan)]"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
-        <a href="${p.link}" target="_blank" rel="noopener" aria-label="Open repository" class="text-[var(--muted-2)] hover:text-[var(--text)] transition-colors">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>
-        </a>
-      </div>
-      <h3 class="font-display font-semibold text-lg mb-2">${p.title}</h3>
-      <p class="text-[var(--muted)] text-sm leading-relaxed mb-5">${p.desc}</p>
-      <div class="flex flex-wrap gap-2">
-        ${p.tech.map(t => `<span class="font-mono text-[11px] px-2.5 py-1 rounded-md border border-[var(--border)] text-[var(--muted)]">${t}</span>`).join('')}
-      </div>
-    </div>
-  </div>`;
-}
-
-const grid = document.getElementById('project-grid');
-const statusEl = document.getElementById('repo-status');
-
-function renderProjects(list){
-  grid.innerHTML = list.map(projectCard).join('');
-  grid.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-  // cursor-follow glow
-  grid.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
-      card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting){
+        setTimeout(() => entry.target.classList.add('is-visible'), i * 50);
+        revealObserver.unobserve(entry.target);
+      }
     });
-  });
-}
-
-renderProjects(fallbackProjects);
-
-// Optional: try to enrich with live GitHub data (falls back silently if unavailable)
-fetch('https://api.github.com/users/KajalGupta-tech/repos?sort=updated&per_page=4')
-  .then(res => { if (!res.ok) throw new Error('github api unavailable'); return res.json(); })
-  .then(repos => {
-    if (Array.isArray(repos) && repos.length){
-      statusEl.textContent = `${repos.length} repos synced from GitHub`;
-    } else {
-      statusEl.textContent = 'showcasing featured projects';
-    }
-  })
-  .catch(() => { statusEl.textContent = 'showcasing featured projects'; });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 </script>
 
 </body>
